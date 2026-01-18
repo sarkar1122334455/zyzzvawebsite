@@ -1,0 +1,413 @@
+/* app/sponsor/sponsor.module.css */
+
+/* --- Page Wrapper (replaces body) --- */
+.pageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    /* Ensure this image is in public/assets/ */
+    background: url("/assets/glimps.jpeg") center/cover no-repeat fixed;
+    font-family: headerFont, Arial, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.pageWrapper::before {
+    content: "";
+    position: absolute;
+    /* Changed from fixed to absolute to fit wrapper */
+    inset: 0;
+    background: url("/assets/glimps.jpeg") center/cover no-repeat fixed;
+    filter: blur(8px) brightness(0.4);
+    z-index: 0;
+}
+
+.pageWrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+/* --- Container --- */
+.sponsorContainer {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 40px 60px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.sponsorContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(12, 240, 180, 0.2), transparent 65%),
+        radial-gradient(circle at 50% 70%, rgba(12, 240, 180, 0.15), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- Typography --- */
+.pageTitle {
+    font-size: clamp(48px, 6vw, 80px);
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #00ffcc, #00d9a5, #00b8d4, #00ffcc);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+    letter-spacing: 4px;
+    text-shadow: 0 0 50px rgba(0, 255, 204, 0.9), 0 0 70px rgba(0, 217, 165, 0.7);
+    position: relative;
+    z-index: 1;
+    /* Note: text-stroke is not standard in all browsers yet */
+    -webkit-text-stroke: 4px black;
+    paint-order: stroke fill;
+}
+
+.pageSubtitle {
+    text-align: center;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    text-shadow:
+        0 0 4px black,
+        0 0 8px black,
+        0 2px 10px rgba(0, 0, 0, 0.9),
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --- Tiers Section --- */
+.sponsorTiers {
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.8s ease;
+}
+
+.tierSection {
+    margin-bottom: 60px;
+}
+
+.tierTitle {
+    font-size: clamp(32px, 4vw, 48px);
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    font-family: headerFont, sans-serif;
+    text-shadow: 0 0 30px currentColor;
+}
+
+.platinumTitle {
+    color: #e8e8e8;
+    text-shadow: 0 0 30px rgba(232, 232, 232, 0.8);
+}
+
+.goldTitle {
+    color: #ffd700;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+}
+
+.silverTitle {
+    color: #c0c0c0;
+    text-shadow: 0 0 30px rgba(192, 192, 192, 0.8);
+}
+
+.sponsorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* --- Sponsor Card --- */
+.sponsorCard {
+    position: relative;
+    background: linear-gradient(145deg, rgba(12, 240, 180, 0.15), rgba(0, 0, 0, 0.7));
+    border-radius: 20px;
+    padding: 40px 30px;
+    border: 2px solid rgba(12, 240, 180, 0.3);
+    backdrop-filter: blur(20px) saturate(120%);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(12, 240, 180, 0.2),
+        inset 0 0 20px rgba(12, 240, 180, 0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.85, 0.3, 1);
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Stagger animations manually or via child selector in React loop */
+.sponsorCard:nth-child(odd) {
+    animation-delay: 0s;
+}
+
+.sponsorCard:nth-child(even) {
+    animation-delay: 0.5s;
+}
+
+@keyframes cardFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.sponsorCard::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    background: linear-gradient(45deg,
+            rgba(12, 240, 180, 0.5),
+            transparent,
+            rgba(12, 240, 180, 0.5));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+/* Specific Card Variants */
+.platinumCard {
+    border-color: rgba(232, 232, 232, 0.4);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(232, 232, 232, 0.3),
+        inset 0 0 20px rgba(232, 232, 232, 0.1);
+}
+
+.goldCard {
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.3),
+        inset 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.silverCard {
+    border-color: rgba(192, 192, 192, 0.4);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(192, 192, 192, 0.3),
+        inset 0 0 20px rgba(192, 192, 192, 0.1);
+}
+
+/* Hover States */
+.sponsorCard:hover {
+    transform: translateY(-15px) scale(1.05);
+    border-color: rgba(12, 240, 180, 0.8);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(12, 240, 180, 0.5),
+        inset 0 0 30px rgba(12, 240, 180, 0.2);
+}
+
+.platinumCard:hover {
+    border-color: rgba(232, 232, 232, 0.8);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(232, 232, 232, 0.5),
+        inset 0 0 30px rgba(232, 232, 232, 0.2);
+}
+
+.goldCard:hover {
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.5),
+        inset 0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+.silverCard:hover {
+    border-color: rgba(192, 192, 192, 0.8);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(192, 192, 192, 0.5),
+        inset 0 0 30px rgba(192, 192, 192, 0.2);
+}
+
+.sponsorCard:hover::before {
+    opacity: 1;
+}
+
+.sponsorLogo {
+    font-size: 64px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(12, 240, 180, 0.6));
+    animation: logoSpin 3s ease-in-out infinite;
+}
+
+@keyframes logoSpin {
+
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+.sponsorCard h3 {
+    font-size: clamp(22px, 3vw, 28px);
+    margin-bottom: 10px;
+    color: #0cf0b4;
+    text-shadow: 0 0 15px rgba(12, 240, 180, 0.5);
+    letter-spacing: 1px;
+    font-family: headerFont, sans-serif;
+}
+
+.sponsorCard p {
+    font-size: clamp(14px, 1.8vw, 16px);
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.6;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* --- CTA Section --- */
+.becomeSponsor {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.sponsorCta {
+    background: linear-gradient(145deg, rgba(12, 240, 180, 0.2), rgba(0, 0, 0, 0.8));
+    border-radius: 24px;
+    padding: 60px 40px;
+    border: 2px solid rgba(12, 240, 180, 0.4);
+    backdrop-filter: blur(20px) saturate(120%);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(12, 240, 180, 0.3),
+        inset 0 0 30px rgba(12, 240, 180, 0.1);
+    text-align: center;
+    color: white;
+    transition: all 0.4s ease;
+}
+
+.sponsorCta:hover {
+    transform: translateY(-5px);
+    border-color: rgba(12, 240, 180, 0.6);
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(12, 240, 180, 0.4),
+        inset 0 0 40px rgba(12, 240, 180, 0.15);
+}
+
+.sponsorCta h2 {
+    font-size: clamp(36px, 4.5vw, 52px);
+    margin-bottom: 20px;
+    color: #0cf0b4;
+    text-shadow: 0 0 25px rgba(12, 240, 180, 0.6);
+    letter-spacing: 3px;
+    font-family: headerFont, sans-serif;
+}
+
+.sponsorCta p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(255, 255, 255, 1);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.ctaButton {
+    display: inline-block;
+    padding: 18px 50px;
+    background: linear-gradient(135deg, rgba(12, 240, 180, 0.3), rgba(12, 240, 180, 0.1));
+    border: 2px solid rgba(12, 240, 180, 0.6);
+    border-radius: 12px;
+    color: #0cf0b4;
+    font-size: 18px;
+    font-family: headerFont, sans-serif;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ctaButton:hover {
+    background: linear-gradient(135deg, rgba(12, 240, 180, 0.5), rgba(12, 240, 180, 0.2));
+    border-color: rgba(12, 240, 180, 0.9);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(12, 240, 180, 0.5);
+}
+
+.ctaButton:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+    .sponsorContainer {
+        padding: 100px 20px 40px;
+    }
+
+    .sponsorGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sponsorCard {
+        padding: 30px 20px;
+    }
+
+    .sponsorCta {
+        padding: 40px 25px;
+    }
+}
