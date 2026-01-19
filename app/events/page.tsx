@@ -240,8 +240,9 @@ export default function EventsPage() {
                                                 className={styles.eventPoster}
                                             />
                                             <div className={styles.eventContent}>
-                                                <div className={styles.eventIcon}>{event.icon}</div>
                                                 <h3 className={styles.eventTitle}>{event.title}</h3>
+                                            </div>
+                                            <div className={styles.eventDetails}>
                                                 <p className={styles.eventDate}>{event.date}</p>
                                                 <p className={styles.eventDescription}>{event.desc}</p>
                                                 <div className={styles.eventTags}>
