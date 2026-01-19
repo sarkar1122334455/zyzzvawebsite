@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useCallback, useMemo } from "react";
 
 interface IntroContextType {
     isNavbarVisible: boolean;
@@ -13,8 +13,14 @@ export function IntroProvider({ children }: { children: ReactNode }) {
     // Default to true so it shows on other pages if they don't explicitly hide it.
     const [isNavbarVisible, setNavbarVisible] = useState(true);
 
+    // Memoize the context value to prevent unnecessary re-renders
+    const value = useMemo(
+        () => ({ isNavbarVisible, setNavbarVisible }),
+        [isNavbarVisible]
+    );
+
     return (
-        <IntroContext.Provider value={{ isNavbarVisible, setNavbarVisible }}>
+        <IntroContext.Provider value={value}>
             {children}
         </IntroContext.Provider>
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useIntro } from "./context/IntroContext";
 // If you want to use Next.js Image optimization, uncomment the import below
@@ -22,18 +22,19 @@ export default function Home() {
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
+  // Memoize checkMobile to prevent unnecessary re-creations
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+  }, []);
+
   // Handle Resize & Mobile Detection
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-    };
-
     // Initial check
     checkMobile();
 
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  }, [checkMobile]);
 
   // Handle Video Loading & Playback switching
   useEffect(() => {
@@ -76,16 +77,20 @@ export default function Home() {
       if (activeRef.current.readyState >= 3) {
         handleVideoReady();
       } else {
-        activeRef.current.addEventListener("canplaythrough", handleVideoReady, { once: true });
+        activeRef.current.addEventListener("canplaythrough", handleVideoReady, {
+          once: true,
+          passive: true
+        });
       }
     }
 
     return () => clearTimeout(fallbackTimeout);
   }, [isMobile]); // Re-run if mobile state changes immediately on mount
 
-  const handleVideoEnded = () => {
+  // Memoize handleVideoEnded to prevent re-creation
+  const handleVideoEnded = useCallback(() => {
     setNavbarVisible(true);
-  };
+  }, [setNavbarVisible]);
 
   return (
     <main>

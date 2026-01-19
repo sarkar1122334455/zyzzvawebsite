@@ -165,7 +165,6 @@ body {
   /* INITIAL STATE: Move to bottom used to be 100vh - 100%, now adding -10px margin */
   transform: translateY(calc(100vh - 100% - 30px)) translateZ(0);
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
 .top-backdrop.at-top {
@@ -192,7 +191,6 @@ body {
   transition: transform 0.28s ease, box-shadow 0.28s ease,
     border-color 0.28s ease;
   overflow: hidden;
-  will-change: transform;
 }
 
 .menu-button:hover {
@@ -264,7 +262,6 @@ body {
   transform: scale(1.02) translateZ(0);
   transition: opacity 0.45s ease, transform 0.45s ease;
   z-index: 998;
-  will-change: opacity, transform;
 }
 
 .menu-overlay.show {

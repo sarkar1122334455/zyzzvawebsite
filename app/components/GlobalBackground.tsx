@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-export default function GlobalBackground() {
+function GlobalBackground() {
     const pathname = usePathname();
     const isHome = pathname === "/";
 
@@ -43,3 +43,6 @@ export default function GlobalBackground() {
         </div>
     );
 }
+
+// Export memoized version to prevent unnecessary re-renders
+export default memo(GlobalBackground);

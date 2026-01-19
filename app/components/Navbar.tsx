@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useIntro } from "../context/IntroContext";
 
-export default function Navbar() {
+function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const pathname = usePathname();
     const { isNavbarVisible } = useIntro();
@@ -83,3 +83,6 @@ export default function Navbar() {
         </>
     );
 }
+
+// Export memoized version to prevent unnecessary re-renders
+export default memo(Navbar);

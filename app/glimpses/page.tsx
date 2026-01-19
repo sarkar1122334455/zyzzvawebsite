@@ -1,112 +1,116 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./glimpses.module.css";
-// If you have a separate Navbar component, import it here:
-// import Navbar from "@/components/Navbar"; 
 
-const data = [
-    { title: "Event Night", text: "Memorable night with lights & energy" },
-    { title: "Hackathon", text: "Innovation meets collaboration" },
-    { title: "Workshop", text: "Hands-on learning experience" },
-    { title: "Cultural Fest", text: "Music, dance and celebration" },
-    { title: "Guest Talk", text: "Insights from industry leaders" },
+/**
+ * Image data structure
+ */
+const imageData = [
+    { id: 0, src: "/event_night.png", title: "Event Night" },
+    { id: 1, src: "/hackathon.png", title: "Hackathon" },
+    { id: 2, src: "/cultural_fest.png", title: "Cultural Fest" },
+    { id: 3, src: "/event_night.png", title: "Workshop" },
+    { id: 4, src: "/hackathon.png", title: "Tech Talk" }
 ];
 
 export default function GlimpsesPage() {
-    const [current, setCurrent] = useState(0);
-    const touchStartX = useRef(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+    const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+    const totalImages = imageData.length;
 
-    // --- Logic to Calculate Classes ---
-    const getCardClass = (index: number) => {
-        const total = data.length;
-        const diff = (index - current + total) % total;
+    // Calculate positions
+    const getPrevIndex = useCallback(() => {
+        return (currentIndex - 1 + totalImages) % totalImages;
+    }, [currentIndex, totalImages]);
 
-        if (diff === 0) return styles.center;
-        if (diff === 1) return styles.right;
-        if (diff === total - 1) return styles.left;
+    const getNextIndex = useCallback(() => {
+        return (currentIndex + 1) % totalImages;
+    }, [currentIndex, totalImages]);
 
-        // For a 5-item list, diff 2 is hidden right, diff 3 (or total-2) is hidden left
-        // If we had more items, we might want a generic 'hidden' for those in back, 
-        // but distinguishing left/right hidden sides helps animation direction.
-        if (diff === 2) return styles.hiddenRight;
-        if (diff === total - 2) return styles.hiddenLeft;
+    // Go to specific slide
+    const goToSlide = useCallback((index: number) => {
+        if (index === currentIndex) return;
+        setCurrentIndex(index);
+    }, [currentIndex]);
 
-        // Fallback or generic hidden for larger sets
-        return diff < total / 2 ? styles.hiddenRight : styles.hiddenLeft;
-    };
+    // Auto-play functionality
+    const startAutoPlay = useCallback(() => {
+        if (autoPlayRef.current) {
+            clearInterval(autoPlayRef.current);
+        }
+        autoPlayRef.current = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % totalImages);
+        }, 4000);
+    }, [totalImages]);
 
-    const next = () => {
-        setCurrent((prev) => (prev + 1) % data.length);
-    };
-
-    const prev = () => {
-        setCurrent((prev) => (prev - 1 + data.length) % data.length);
-    };
-
-    // --- Swipe Handling ---
-    const handleTouchStart = (e: React.TouchEvent) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e: React.TouchEvent) => {
-        const dx = e.changedTouches[0].clientX - touchStartX.current;
-        if (dx > 60) prev();
-        if (dx < -60) next();
-    };
-
-    // --- Keyboard Handling (Optional but good for UX) ---
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "ArrowRight") next();
-            if (e.key === "ArrowLeft") prev();
-        };
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
+    const stopAutoPlay = useCallback(() => {
+        if (autoPlayRef.current) {
+            clearInterval(autoPlayRef.current);
+            autoPlayRef.current = null;
+        }
     }, []);
 
+    // Initialize auto-play
+    useEffect(() => {
+        startAutoPlay();
+        return () => {
+            if (autoPlayRef.current) {
+                clearInterval(autoPlayRef.current);
+            }
+        };
+    }, [startAutoPlay]);
+
+    // Mouse move effect
+    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        setMousePos({ x, y });
+    }, []);
+
+    // Get class name for each image
+    const getImageClass = (index: number) => {
+        if (index === currentIndex) return styles.center;
+        if (index === getPrevIndex()) return styles.left;
+        if (index === getNextIndex()) return styles.right;
+        return styles.hidden;
+    };
+
     return (
-        <div className={styles.pageWrapper}>
+        <div
+            className={styles.carouselContainer}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={stopAutoPlay}
+            onMouseLeave={startAutoPlay}
+            style={{
+                background: `radial-gradient(ellipse at ${mousePos.x}% ${mousePos.y}%, #1a3a3a 0%, #0a0a0a 100%)`
+            }}
+        >
+            <div className={styles.carouselWrapper}>
+                {imageData.map((image, index) => (
+                    <div
+                        key={image.id}
+                        className={`${styles.imageContainer} ${getImageClass(index)}`}
+                        data-index={index}
+                    >
+                        <img src={image.src} alt={image.title} />
+                        <div className={styles.imageTitle}>{image.title}</div>
+                    </div>
+                ))}
+            </div>
 
-            {/* If you have a <Navbar /> component from the previous prompt, 
-        you should render it here to keep the navigation consistent.
-        <Navbar />
-      */}
+            <div className={styles.reflectionFloor}></div>
 
-            <div
-                className={styles.glimpseWrapper}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-            >
-                <button
-                    className={`${styles.arrow} ${styles.arrowLeft}`}
-                    onClick={prev}
-                    aria-label="Previous Glimpse"
-                >
-                    ‹
-                </button>
-
-                <button
-                    className={`${styles.arrow} ${styles.arrowRight}`}
-                    onClick={next}
-                    aria-label="Next Glimpse"
-                >
-                    ›
-                </button>
-
-                <div className={styles.cardContainer} id="container">
-                    {data.map((item, index) => (
-                        <div
-                            key={index}
-                            className={`${styles.card} ${getCardClass(index)}`}
-                        >
-                            <div>
-                                <h2>{item.title}</h2>
-                                <p>{item.text}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            <div className={styles.navigation}>
+                {imageData.map((_, index) => (
+                    <div
+                        key={index}
+                        className={`${styles.dot} ${index === currentIndex ? styles.active : ""}`}
+                        onClick={() => goToSlide(index)}
+                        data-slide={index}
+                    />
+                ))}
             </div>
         </div>
     );

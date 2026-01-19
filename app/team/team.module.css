@@ -1,4 +1,4 @@
-/* Themed Reflection Carousel for Glimpses */
+/* Themed Two-Level Team Carousel */
 
 .carouselContainer {
     position: relative;
@@ -14,6 +14,51 @@
     transition: background 0.3s ease;
 }
 
+/* Header */
+.header {
+    position: absolute;
+    top: 80px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.header h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    color: #0cf0b4;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px rgba(12, 240, 180, 0.6),
+        0 4px 10px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+/* Back Button */
+.backButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background: rgba(12, 240, 180, 0.2);
+    border: 2px solid rgba(12, 240, 180, 0.5);
+    border-radius: 12px;
+    color: #0cf0b4;
+    font-family: 'GraffitiOne', headerFont, Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    isolation: isolate;
+}
+
+.backButton:hover {
+    background: rgba(12, 240, 180, 0.3);
+    box-shadow: 0 0 20px rgba(12, 240, 180, 0.6);
+    transform: translateX(-5px);
+}
+
+/* Carousel Wrapper */
 .carouselWrapper {
     position: relative;
     width: 800px;
@@ -23,102 +68,171 @@
     align-items: center;
 }
 
-.imageContainer {
+/* Team Card Styles */
+.teamCard {
+    position: absolute;
+    width: 400px;
+    height: 350px;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(12, 240, 180, 0.1), rgba(0, 0, 0, 0.8));
+    border: 2px solid rgba(12, 240, 180, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(12, 240, 180, 0.2);
+    -webkit-box-reflect: below 10px linear-gradient(transparent 0%, transparent 40%, rgba(12, 240, 180, 0.15) 100%);
+    pointer-events: auto;
+}
+
+.teamCard:hover {
+    border-color: #0cf0b4;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(12, 240, 180, 0.5);
+}
+
+.teamIcon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(12, 240, 180, 0.4));
+}
+
+.teamName {
+    font-size: clamp(28px, 4vw, 36px);
+    color: #0cf0b4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(12, 240, 180, 0.6);
+}
+
+.teamCount {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+}
+
+.clickHint {
+    font-size: 14px;
+    color: rgba(12, 240, 180, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.teamCard:hover .clickHint {
+    opacity: 1;
+}
+
+/* Member Card Styles */
+.memberCard {
     position: absolute;
     width: 400px;
     height: 300px;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border-radius: 15px;
+    pointer-events: auto;
 }
 
-.imageContainer img {
+.memberCard img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
-    /* Themed box shadow with cyan glow */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5),
         0 0 30px rgba(12, 240, 180, 0.2);
-    /* Reflection effect with theme color tint */
     -webkit-box-reflect: below 10px linear-gradient(transparent 0%, transparent 40%, rgba(12, 240, 180, 0.15) 100%);
 }
 
-/* Image Title Overlay */
-.imageTitle {
+.memberInfo {
     position: absolute;
-    bottom: 20px;
+    bottom: 0;
     left: 0;
     right: 0;
-    text-align: center;
-    color: #0cf0b4;
-    font-size: clamp(18px, 3vw, 24px);
-    font-family: 'GraffitiOne', headerFont, Arial, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9),
-        0 0 20px rgba(12, 240, 180, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
 }
 
-.imageContainer:hover .imageTitle {
-    opacity: 1;
+.memberCard:hover .memberInfo {
+    transform: translateY(0);
+}
+
+.memberName {
+    font-size: clamp(20px, 3vw, 24px);
+    color: #0cf0b4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 15px rgba(12, 240, 180, 0.6);
+}
+
+.memberRole {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.5px;
 }
 
 /* Center Position */
-.imageContainer.center {
+.center {
     z-index: 3;
     transform: translateZ(0px) scale(1);
     opacity: 1;
 }
 
-.imageContainer.center img {
+.teamCard.center,
+.memberCard.center img {
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
         0 0 40px rgba(12, 240, 180, 0.4);
 }
 
 /* Left Position */
-.imageContainer.left {
+.left {
     z-index: 2;
     transform: translateX(-350px) rotateY(45deg) scale(0.8);
     opacity: 0.6;
 }
 
-.imageContainer.left::after {
+.left::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     width: 100%;
     height: 100%;
-    /* Themed shadow overlay */
     background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
     border-radius: 15px;
     pointer-events: none;
 }
 
 /* Right Position */
-.imageContainer.right {
+.right {
     z-index: 2;
     transform: translateX(350px) rotateY(-45deg) scale(0.8);
     opacity: 0.6;
 }
 
-.imageContainer.right::after {
+.right::after {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Themed shadow overlay */
     background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
     border-radius: 15px;
     pointer-events: none;
 }
 
 /* Hidden Position */
-.imageContainer.hidden {
+.hidden {
     opacity: 0;
     transform: translateZ(-200px) scale(0.5);
     z-index: 1;
@@ -138,7 +252,6 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    /* Themed with cyan accents */
     background: rgba(12, 240, 180, 0.2);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -188,7 +301,6 @@
     bottom: -150px;
     width: 100%;
     height: 100px;
-    /* Themed with cyan tint */
     background: linear-gradient(to bottom,
             rgba(12, 240, 180, 0.03) 0%,
             transparent 100%);
@@ -203,36 +315,56 @@
         height: 500px;
     }
 
-    .imageContainer {
+    .teamCard,
+    .memberCard {
         width: 320px;
+    }
+
+    .teamCard {
+        height: 280px;
+    }
+
+    .memberCard {
         height: 240px;
     }
 
-    .imageContainer.left {
+    .left {
         transform: translateX(-280px) rotateY(45deg) scale(0.8);
     }
 
-    .imageContainer.right {
+    .right {
         transform: translateX(280px) rotateY(-45deg) scale(0.8);
+    }
+
+    .header h1 {
+        font-size: 32px;
     }
 }
 
 @media (max-width: 768px) {
     .carouselWrapper {
         width: 90vw;
-        height: 400px;
+        height: 450px;
     }
 
-    .imageContainer {
+    .teamCard,
+    .memberCard {
         width: 280px;
+    }
+
+    .teamCard {
+        height: 250px;
+    }
+
+    .memberCard {
         height: 210px;
     }
 
-    .imageContainer.left {
+    .left {
         transform: translateX(-200px) rotateY(35deg) scale(0.75);
     }
 
-    .imageContainer.right {
+    .right {
         transform: translateX(200px) rotateY(-35deg) scale(0.75);
     }
 
@@ -246,33 +378,48 @@
         height: 12px;
     }
 
-    .imageTitle {
-        font-size: 16px;
-        bottom: 15px;
+    .header {
+        top: 60px;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .teamIcon {
+        font-size: 60px;
+    }
+
+    .teamName {
+        font-size: 24px;
     }
 }
 
 @media (max-width: 480px) {
     .carouselWrapper {
         width: 95vw;
-        height: 350px;
+        height: 400px;
     }
 
-    .imageContainer {
+    .teamCard,
+    .memberCard {
         width: 240px;
+    }
+
+    .teamCard {
+        height: 220px;
+    }
+
+    .memberCard {
         height: 180px;
     }
 
-    .imageContainer.left {
+    .left {
         transform: translateX(-150px) rotateY(30deg) scale(0.7);
     }
 
-    .imageContainer.right {
+    .right {
         transform: translateX(150px) rotateY(-30deg) scale(0.7);
-    }
-
-    .imageContainer img {
-        -webkit-box-reflect: below 8px linear-gradient(transparent 0%, transparent 50%, rgba(12, 240, 180, 0.1) 100%);
     }
 
     .navigation {
@@ -284,10 +431,21 @@
         height: 10px;
     }
 
-    .imageTitle {
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .backButton {
+        padding: 10px 18px;
         font-size: 14px;
-        bottom: 12px;
-        letter-spacing: 1px;
+    }
+
+    .teamIcon {
+        font-size: 50px;
+    }
+
+    .teamName {
+        font-size: 20px;
     }
 }
 
@@ -310,4 +468,8 @@
 
 .navigation {
     animation: fadeIn 1s ease-out 0.3s backwards;
+}
+
+.header {
+    animation: fadeIn 0.8s ease-out 0.2s backwards;
 }
