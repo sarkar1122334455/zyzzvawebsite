@@ -7,17 +7,24 @@ import styles from "./glimpses.module.css";
  * Image data structure
  */
 const imageData = [
-    { id: 0, src: "/event_night.png", title: "Event Night" },
-    { id: 1, src: "/hackathon.png", title: "Hackathon" },
-    { id: 2, src: "/cultural_fest.png", title: "Cultural Fest" },
-    { id: 3, src: "/event_night.png", title: "Workshop" },
-    { id: 4, src: "/hackathon.png", title: "Tech Talk" }
+    { id: 0, src: "/event_night.png", title: "Event Night", description: "Memorable moments from our events" },
+    { id: 1, src: "/hackathon.png", title: "Hackathon", description: "Innovation and coding challenges" },
+    { id: 2, src: "/cultural_fest.png", title: "Cultural Fest", description: "Celebrating diverse cultures" },
+    { id: 3, src: "/event_night.png", title: "Workshop", description: "Learning and skill development" },
+    { id: 4, src: "/hackathon.png", title: "Tech Talk", description: "Knowledge sharing sessions" },
+    { id: 5, src: "/cultural_fest.png", title: "Performances", description: "Music, dance, and drama" },
+    { id: 6, src: "/event_night.png", title: "Competitions", description: "Showcasing talent and creativity" },
+    { id: 7, src: "/hackathon.png", title: "Guest Artists", description: "Celebrity performances" },
+    { id: 8, src: "/cultural_fest.png", title: "Food Fest", description: "Culinary delights and treats" },
+    { id: 9, src: "/event_night.png", title: "Art Exhibition", description: "Creative masterpieces on display" },
+    { id: 10, src: "/hackathon.png", title: "Closing Ceremony", description: "Grand finale celebration" }
 ];
 
 export default function GlimpsesPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
     const [galleryOpen, setGalleryOpen] = useState(false);
+    const [activeImage, setActiveImage] = useState(0);
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
     const totalImages = imageData.length;
 
@@ -35,6 +42,19 @@ export default function GlimpsesPage() {
         if (index === currentIndex) return;
         setCurrentIndex(index);
     }, [currentIndex]);
+
+    // Gallery navigation handlers
+    const handlePrev = useCallback(() => {
+        setActiveImage((prev) => Math.max(0, prev - 1));
+    }, []);
+
+    const handleNext = useCallback(() => {
+        setActiveImage((prev) => Math.min(imageData.length - 1, prev + 1));
+    }, []);
+
+    const handleThumbnailClick = useCallback((index: number) => {
+        setActiveImage(index);
+    }, []);
 
     // Auto-play functionality
     const startAutoPlay = useCallback(() => {
@@ -146,13 +166,72 @@ export default function GlimpsesPage() {
 
                         <h2 className={styles.galleryTitle}>All Glimpses</h2>
 
-                        <div className={styles.galleryGrid}>
-                            {imageData.map((image) => (
-                                <div key={image.id} className={styles.galleryItem}>
-                                    <img src={image.src} alt={image.title} />
-                                    <div className={styles.galleryItemTitle}>{image.title}</div>
+                        <div className={styles.sliderGallery}>
+                            {/* Large Images */}
+                            <div className={styles.bigImages}>
+                                {imageData.map((image, index) => (
+                                    <div
+                                        key={image.id}
+                                        className={styles.bigImage}
+                                        data-active={index === activeImage ? 'true' : undefined}
+                                    >
+                                        <img src={image.src} alt={image.title} />
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Bottom Section: Thumbnails + Content */}
+                            <div className={styles.galleryBottom}>
+                                {/* Thumbnails */}
+                                <div className={styles.thumbnails}>
+                                    {imageData.map((image, index) => (
+                                        <div
+                                            key={image.id}
+                                            className={styles.thumbnail}
+                                            data-active={index === activeImage ? 'true' : undefined}
+                                            onClick={() => handleThumbnailClick(index)}
+                                        >
+                                            <img src={image.src} alt={image.title} />
+                                            <div className={styles.cuticle}></div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+
+                                {/* Content Panel */}
+                                <div className={styles.contentPanel}>
+                                    {/* Nav Buttons */}
+                                    <nav className={styles.navButtons}>
+                                        <button
+                                            onClick={handlePrev}
+                                            disabled={activeImage === 0}
+                                            title="Previous"
+                                        >
+                                            &lt;
+                                        </button>
+                                        <button
+                                            onClick={handleNext}
+                                            disabled={activeImage === imageData.length - 1}
+                                            title="Next"
+                                        >
+                                            &gt;
+                                        </button>
+                                    </nav>
+
+                                    {/* Articles */}
+                                    <div className={styles.articles}>
+                                        {imageData.map((image, index) => (
+                                            <article
+                                                key={image.id}
+                                                className={styles.article}
+                                                data-active={index === activeImage ? 'true' : undefined}
+                                            >
+                                                <h2>{image.title}</h2>
+                                                <p>{image.description}</p>
+                                            </article>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
