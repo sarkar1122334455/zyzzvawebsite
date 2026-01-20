@@ -17,6 +17,7 @@ const imageData = [
 export default function GlimpsesPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+    const [galleryOpen, setGalleryOpen] = useState(false);
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
     const totalImages = imageData.length;
 
@@ -114,6 +115,48 @@ export default function GlimpsesPage() {
                     />
                 ))}
             </div>
+
+            {/* View More Button */}
+            <button
+                className={styles.viewMoreBtn}
+                onClick={() => setGalleryOpen(true)}
+            >
+                View All Glimpses
+            </button>
+
+            {/* Gallery Modal */}
+            {galleryOpen && (
+                <div
+                    className={styles.galleryOverlay}
+                    onClick={() => setGalleryOpen(false)}
+                >
+                    <div
+                        className={styles.galleryContainer}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            className={styles.closeBtn}
+                            onClick={() => setGalleryOpen(false)}
+                            aria-label="Close gallery"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                <path d="M18 6L6 18M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <h2 className={styles.galleryTitle}>All Glimpses</h2>
+
+                        <div className={styles.galleryGrid}>
+                            {imageData.map((image) => (
+                                <div key={image.id} className={styles.galleryItem}>
+                                    <img src={image.src} alt={image.title} />
+                                    <div className={styles.galleryItemTitle}>{image.title}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
