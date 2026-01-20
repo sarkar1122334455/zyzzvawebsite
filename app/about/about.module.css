@@ -207,7 +207,7 @@
     /* ✅ Font Updated: Urban Heroes */
     font-family: 'UrbanHeroes', var(--font-graffiti), cursive;
 
-    background: linear-gradient(135deg, #00ffcc, #00d9a5, #00b8d4, #00ffcc);
+    background: linear-gradient(135deg, #ffffff, #e0e0e0, #cccccc, #ffffff);
     background-size: 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -218,6 +218,20 @@
     /* Removed text-shadow (glow) as requested */
     /* Removed text-stroke to make solid */
     paint-order: stroke fill;
+}
+
+.subtitle {
+    font-size: clamp(18px, 2.5vw, 24px);
+    text-align: center;
+    color: #ffd700;
+    margin-top: -15px;
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'ProtestRevolutionLocal', 'GraffitiOne', sans-serif;
+    animation: fadeIn 1s ease 0.5s backwards;
 }
 
 @keyframes shimmer {
@@ -421,5 +435,48 @@
 
     .title {
         font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutContainer {
+        padding: 60px 15px 20px;
+    }
+
+    .sliderBox {
+        height: 250px;
+        border-radius: 12px;
+    }
+
+    .storyBox {
+        padding: 20px 15px;
+        margin: 10px 0;
+    }
+
+    .title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .storyBox h2 {
+        font-size: 22px;
+    }
+
+    .storyBox p {
+        font-size: 14px;
+        text-align: left;
+        /* Better for small screens */
+    }
+
+    .arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
     }
 }
