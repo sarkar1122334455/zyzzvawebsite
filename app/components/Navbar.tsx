@@ -44,7 +44,7 @@ function Navbar() {
                     onClick={toggleMenu}
                 >
                     <img
-                        src="/spraypaint.svg"
+                        src="/spraypaint.png"
                         alt="Menu"
                         className={styles.menuIconImg}
                     />
