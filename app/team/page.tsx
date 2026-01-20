@@ -52,7 +52,8 @@ const teamsData = [
             { id: 2, name: "Debasmita Das", role: "Core Member", image: "/cultural_fest.png" },
             { id: 3, name: "Sagnik Roy", role: "Core Member", image: "/event_night.png" },
             { id: 4, name: "Somerita Das", role: "Core Member", image: "/hackathon.png" },
-            { id: 5, name: "Ahana Sen", role: "Core Member", image: "/cultural_fest.png" }
+            { id: 5, name: "Ahana Sen", role: "Core Member", image: "/cultural_fest.png" },
+            { id: 6, name: "Arpit Das", role: "Core Member", image: "/event_night.png" }
         ]
     }
 ];
@@ -61,6 +62,7 @@ export default function TeamPage() {
     const [viewMode, setViewMode] = useState<"teams" | "members">("teams");
     const [selectedTeam, setSelectedTeam] = useState<number | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -99,7 +101,16 @@ export default function TeamPage() {
     }, []);
 
     // Auto-play functionality
+    const stopAutoplay = useCallback(() => {
+        setIsPlaying(false);
+        if (autoPlayRef.current) {
+            clearInterval(autoPlayRef.current);
+            autoPlayRef.current = null;
+        }
+    }, []);
+
     const startAutoPlay = useCallback(() => {
+        setIsPlaying(true);
         if (autoPlayRef.current) {
             clearInterval(autoPlayRef.current);
         }
@@ -108,12 +119,24 @@ export default function TeamPage() {
         }, 4000);
     }, [totalItems]);
 
-    const stopAutoPlay = useCallback(() => {
-        if (autoPlayRef.current) {
-            clearInterval(autoPlayRef.current);
-            autoPlayRef.current = null;
+    // Navigation Handlers
+    const prev = useCallback(() => {
+        setCurrentIndex((current) => (current - 1 + totalItems) % totalItems);
+        stopAutoplay();
+    }, [totalItems, stopAutoplay]);
+
+    const next = useCallback(() => {
+        setCurrentIndex((current) => (current + 1) % totalItems);
+        stopAutoplay();
+    }, [totalItems, stopAutoplay]);
+
+    const toggleAutoplay = useCallback(() => {
+        if (isPlaying) {
+            stopAutoplay();
+        } else {
+            startAutoPlay();
         }
-    }, []);
+    }, [isPlaying, startAutoPlay, stopAutoplay]);
 
     // Initialize auto-play
     useEffect(() => {
@@ -160,7 +183,7 @@ export default function TeamPage() {
             <div
                 className={styles.carouselContainer}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={stopAutoPlay}
+                onMouseEnter={stopAutoplay}
                 onMouseLeave={startAutoPlay}
             >
 
@@ -204,6 +227,33 @@ export default function TeamPage() {
                 </div>
 
                 <div className={styles.reflectionFloor}></div>
+
+                {/* Controls */}
+                <div className={styles.controls}>
+                    <button className={styles.controlBtn} onClick={prev} aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+
+                    <button className={styles.controlBtn} onClick={toggleAutoplay} aria-label="Play/Pause">
+                        {isPlaying ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
+                            </svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M5 3l14 9-14 9V3z" />
+                            </svg>
+                        )}
+                    </button>
+
+                    <button className={styles.controlBtn} onClick={next} aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
 
                 <div className={styles.navigation}>
                     {currentData.map((_, index) => (

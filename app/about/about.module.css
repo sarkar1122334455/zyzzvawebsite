@@ -248,46 +248,39 @@
     }
 }
 
-/* --- Video Section --- */
-.videoBox {
-    width: 100%;
-    margin: 30px 20px;
-    border-radius: 0;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.9);
-    /* Solid opaque */
-    border: none;
-    box-shadow:
-        4px 4px 0 rgba(255, 255, 255, 0.2),
-        0 20px 50px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease;
-    animation: slideInRight 0.8s ease both;
-    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
-}
-
-.videoBox:hover {
-    transform: translateY(-5px);
-    box-shadow:
-        6px 6px 0 rgba(255, 215, 0, 0.4),
-        /* Gold shadow on hover */
-        0 25px 60px rgba(0, 0, 0, 0.9);
-}
-
-.videoPlayer {
-    width: 100%;
+/* --- Video/Media Section integrated into Cards --- */
+.boxMedia {
+    flex: 0 0 40%;
+    /* Fixed 40% width for video */
+    width: 40%;
+    min-height: 300px;
     height: auto;
+    background: #000;
+    /* Allow height to adjust */
+    position: relative;
+    overflow: hidden;
+    /* Sharp edges */
+    border-radius: 0;
+    box-shadow: 4px 4px 0 rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    align-self: stretch;
+    z-index: 1;
+    /* Ensure it stretches to match text height */
+}
+
+.boxMedia video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-
 .storyBox {
-    padding: 50px 40px;
-    margin: 20px;
+    padding: 0;
+    margin: 40px 20px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    /* Solid dark background */
+    background: transparent;
     border-radius: 0;
-    /* Removed backdrop-filter and border as requested */
     box-shadow:
         0 0 0 2px rgba(255, 255, 255, 0.1),
         8px 8px 0 rgba(0, 0, 0, 0.5),
@@ -295,8 +288,28 @@
     transition: all 0.3s ease;
     animation: slideInRight 0.8s ease 0.2s both;
     clip-path: polygon(2% 0, 100% 0, 100% 98%, 98% 100%, 0 100%, 0 2%);
-    /* Asymmetric tag shape */
     position: relative;
+    display: flex;
+    /* Enable Split Layout */
+    flex-wrap: nowrap;
+    /* NO WRAPPING ON DESKTOP */
+    align-items: stretch;
+    /* Stretch to match height */
+    overflow: hidden;
+}
+
+.boxContent {
+    flex: 0 0 60%;
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    /* Prevent squashing */
+    background: #000000;
 }
 
 .storyBox::before {
@@ -393,6 +406,17 @@
     .contentWrapper {
         flex-direction: column;
         gap: 30px;
+    }
+
+    .storyBox {
+        flex-wrap: wrap;
+    }
+
+    .boxContent,
+    .boxMedia {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: unset;
     }
 
     .sliderBox {

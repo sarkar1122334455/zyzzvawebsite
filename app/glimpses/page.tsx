@@ -144,91 +144,93 @@ export default function GlimpsesPage() {
                 View All Glimpses
             </button>
 
-            {/* Gallery Modal */}
             {galleryOpen && (
                 <div
                     className={styles.galleryOverlay}
                     onClick={() => setGalleryOpen(false)}
                 >
-                    <div
-                        className={styles.galleryContainer}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            className={styles.closeBtn}
-                            onClick={() => setGalleryOpen(false)}
-                            aria-label="Close gallery"
+                    <div className={styles.popupWrapper} onClick={(e) => e.stopPropagation()}>
+
+                        <div className={styles.popupHeader}>
+                            <h2 className={styles.galleryTitle}>All Glimpses</h2>
+                            <button
+                                className={styles.closeBtn}
+                                onClick={() => setGalleryOpen(false)}
+                                aria-label="Close gallery"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                    <path d="M18 6L6 18M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div
+                            className={styles.galleryContainer}
                         >
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                                <path d="M18 6L6 18M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        <h2 className={styles.galleryTitle}>All Glimpses</h2>
-
-                        <div className={styles.sliderGallery}>
-                            {/* Large Images */}
-                            <div className={styles.bigImages}>
-                                {imageData.map((image, index) => (
-                                    <div
-                                        key={image.id}
-                                        className={styles.bigImage}
-                                        data-active={index === activeImage ? 'true' : undefined}
-                                    >
-                                        <img src={image.src} alt={image.title} />
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Bottom Section: Thumbnails + Content */}
-                            <div className={styles.galleryBottom}>
-                                {/* Thumbnails */}
-                                <div className={styles.thumbnails}>
+                            <div className={styles.sliderGallery}>
+                                {/* Large Images */}
+                                <div className={styles.bigImages}>
                                     {imageData.map((image, index) => (
                                         <div
                                             key={image.id}
-                                            className={styles.thumbnail}
+                                            className={styles.bigImage}
                                             data-active={index === activeImage ? 'true' : undefined}
-                                            onClick={() => handleThumbnailClick(index)}
                                         >
                                             <img src={image.src} alt={image.title} />
-                                            <div className={styles.cuticle}></div>
                                         </div>
                                     ))}
                                 </div>
 
-                                {/* Content Panel */}
-                                <div className={styles.contentPanel}>
-                                    {/* Nav Buttons */}
-                                    <nav className={styles.navButtons}>
-                                        <button
-                                            onClick={handlePrev}
-                                            disabled={activeImage === 0}
-                                            title="Previous"
-                                        >
-                                            &lt;
-                                        </button>
-                                        <button
-                                            onClick={handleNext}
-                                            disabled={activeImage === imageData.length - 1}
-                                            title="Next"
-                                        >
-                                            &gt;
-                                        </button>
-                                    </nav>
-
-                                    {/* Articles */}
-                                    <div className={styles.articles}>
+                                {/* Bottom Section: Thumbnails + Content */}
+                                <div className={styles.galleryBottom}>
+                                    {/* Thumbnails */}
+                                    <div className={styles.thumbnails}>
                                         {imageData.map((image, index) => (
-                                            <article
+                                            <div
                                                 key={image.id}
-                                                className={styles.article}
+                                                className={styles.thumbnail}
                                                 data-active={index === activeImage ? 'true' : undefined}
+                                                onClick={() => handleThumbnailClick(index)}
                                             >
-                                                <h2>{image.title}</h2>
-                                                <p>{image.description}</p>
-                                            </article>
+                                                <img src={image.src} alt={image.title} />
+                                                <div className={styles.cuticle}></div>
+                                            </div>
                                         ))}
+                                    </div>
+
+                                    {/* Content Panel */}
+                                    <div className={styles.contentPanel}>
+                                        {/* Nav Buttons */}
+                                        <nav className={styles.navButtons}>
+                                            <button
+                                                onClick={handlePrev}
+                                                disabled={activeImage === 0}
+                                                title="Previous"
+                                            >
+                                                &lt;
+                                            </button>
+                                            <button
+                                                onClick={handleNext}
+                                                disabled={activeImage === imageData.length - 1}
+                                                title="Next"
+                                            >
+                                                &gt;
+                                            </button>
+                                        </nav>
+
+                                        {/* Articles */}
+                                        <div className={styles.articles}>
+                                            {imageData.map((image, index) => (
+                                                <article
+                                                    key={image.id}
+                                                    className={styles.article}
+                                                    data-active={index === activeImage ? 'true' : undefined}
+                                                >
+                                                    <h2>{image.title}</h2>
+                                                    <p>{image.description}</p>
+                                                </article>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

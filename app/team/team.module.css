@@ -42,6 +42,7 @@
     text-shadow: 2px 6px 0 #000000;
     /* Hard shadow */
     text-align: center;
+    translate: 0 1rem;
 }
 
 /* Back Button */
@@ -73,6 +74,12 @@
     border-color: #ffd700;
 }
 
+.backButton:active {
+    transform: scale(0.9);
+    box-shadow: 2px 2px 0 #ffd700;
+    transition-duration: 0.1s;
+}
+
 /* Carousel Wrapper */
 .carouselWrapper {
     position: relative;
@@ -82,6 +89,47 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    translate: 0 2.3rem;
+}
+
+/* Navigation Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 10;
+    transform: translateY(-100px);
+}
+
+.controlBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.controlBtn:hover {
+    background: #ffd700;
+    transform: scale(1.1);
+    border-color: #ffd700;
+    color: #000000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.controlBtn svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* Team Card Styles */
