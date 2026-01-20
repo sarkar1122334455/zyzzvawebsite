@@ -17,9 +17,18 @@ export default function SponsorPage() {
     }, []);
 
     // --- Data for Sponsors ---
-    const platinumSponsors = [
-        { name: "Company A", desc: "Leading Innovation", icon: "🏆" },
-        { name: "Company B", desc: "Excellence in Technology", icon: "🏆" },
+    const titleSponsor = {
+        name: "Premier Company",
+        desc: "Proudly presenting Euphonious × Zyzzva '26",
+        tagline: "Title Sponsor",
+        icon: "👑"
+    };
+
+    const partners = [
+        { name: "Partner A", desc: "Strategic Technology Partner", icon: "🤝" },
+        { name: "Partner B", desc: "Innovation & Development Partner", icon: "🤝" },
+        { name: "Partner C", desc: "Community Partner", icon: "🤝" },
+        { name: "Partner D", desc: "Media & Content Partner", icon: "🤝" },
     ];
 
     const goldSponsors = [
@@ -58,15 +67,26 @@ export default function SponsorPage() {
 
                     <div className={styles.sponsorTiers}>
 
-                        {/* PLATINUM TIER */}
-                        <div className={styles.tierSection}>
-                            <h2 className={`${styles.tierTitle} ${styles.platinumTitle}`}>Platinum Sponsors</h2>
-                            <div className={styles.sponsorGrid}>
-                                {platinumSponsors.map((sponsor, index) => (
-                                    <div key={index} className={`${styles.sponsorCard} ${styles.platinumCard}`}>
-                                        <div className={styles.sponsorLogo}>{sponsor.icon}</div>
-                                        <h3>{sponsor.name}</h3>
-                                        <p>{sponsor.desc}</p>
+                        {/* TITLE SPONSOR SECTION */}
+                        <div className={styles.titleSponsorSection}>
+                            <div className={styles.titleSponsorBadge}>{titleSponsor.tagline}</div>
+                            <div className={styles.titleSponsorCard}>
+                                {/* Content removed as requested, background image used */}
+                            </div>
+                        </div>
+
+                        {/* PARTNERS SECTION */}
+                        <div className={styles.partnersSection}>
+                            <h2 className={styles.partnersTitle}>Our Partners</h2>
+                            <p className={styles.partnersSubtitle}>
+                                Collaborating with industry leaders to create exceptional experiences
+                            </p>
+                            <div className={styles.partnersGrid}>
+                                {partners.map((partner, index) => (
+                                    <div key={index} className={styles.partnerCard}>
+                                        <div className={styles.partnerLogo}>{partner.icon}</div>
+                                        <h3>{partner.name}</h3>
+                                        <p>{partner.desc}</p>
                                     </div>
                                 ))}
                             </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Providers from "./components/Providers";
 import GlobalBackground from "./components/GlobalBackground";
+import SprayCursor from "./components/SprayCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
+          <SprayCursor />
           <GlobalBackground />
           <Navbar />
           {children}

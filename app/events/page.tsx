@@ -7,75 +7,143 @@ import styles from "./events.module.css";
 const eventsData = [
     {
         id: 0,
-        icon: "🎵",
-        title: "Music Concert",
-        date: "Day 1 • 6:00 PM",
-        desc: "Live performances by renowned artists and bands. Get ready for an electrifying night of music!",
-        tags: ["Live Music", "Concert"],
-        image: "/event_night.png"
+        icon: "🎸",
+        title: "Collision",
+        date: "Band Performance",
+        desc: "Feel the rhythm and energy as bands collide in a spectacular musical showdown.",
+        tags: ["Band", "Music", "Live"],
+        image: "/event_night.png",
+        registrationLink: "#" // Manual Entry
     },
     {
         id: 1,
-        icon: "💻",
-        title: "Hackathon",
-        date: "Day 1-2 • 9:00 AM",
-        desc: "48-hour coding challenge. Build innovative solutions and compete for amazing prizes!",
-        tags: ["Coding", "Competition"],
-        image: "/hackathon.png"
+        icon: "💃",
+        title: "The Red Carpet",
+        date: "Fashion Show",
+        desc: "Strut your style and witness the epitome of glamour and creativity on the ramp.",
+        tags: ["Fashion", "Style", "Glamour"],
+        image: "/cultural_fest.png",
+        registrationLink: "#"
     },
     {
         id: 2,
-        icon: "🎭",
-        title: "Drama & Theatre",
-        date: "Day 2 • 4:00 PM",
-        desc: "Witness captivating performances and theatrical excellence from talented groups.",
-        tags: ["Theatre", "Performance"],
-        image: "/cultural_fest.png"
+        icon: "🗣️",
+        title: "Wings of Words",
+        date: "Recitation",
+        desc: "Let your voice take flight with the power of poetry and expression.",
+        tags: ["Recitation", "Poetry", "Speech"],
+        image: "/cultural_fest.png",
+        registrationLink: "#"
     },
     {
         id: 3,
-        icon: "🎨",
-        title: "Art Exhibition",
-        date: "Day 1-3 • All Day",
-        desc: "Explore stunning artworks and creative expressions from talented artists.",
-        tags: ["Art", "Exhibition"],
-        image: "/event_night.png"
+        icon: "⏱️",
+        title: "Flash Talk",
+        date: "Extempore",
+        desc: "Think on your feet! A test of wit, spontaneity, and articulate speech.",
+        tags: ["Extempore", "Speaking", "Wit"],
+        image: "/hackathon.png",
+        registrationLink: "#"
     },
     {
         id: 4,
-        icon: "🎤",
-        title: "Karaoke Night",
-        date: "Day 2 • 8:00 PM",
-        desc: "Sing your heart out! Join us for an unforgettable karaoke experience.",
-        tags: ["Entertainment", "Fun"],
-        image: "/cultural_fest.png"
+        icon: "✍️",
+        title: "Inkspire",
+        date: "Creative Writing",
+        desc: "Weave magic with words and let your imagination flow onto the paper.",
+        tags: ["Writing", "Creative", "Literature"],
+        image: "/event_night.png",
+        registrationLink: "#"
     },
     {
         id: 5,
-        icon: "🏆",
-        title: "Gaming Tournament",
-        date: "Day 2 • 10:00 AM",
-        desc: "Compete in exciting gaming tournaments. Show your skills and win prizes!",
-        tags: ["Gaming", "Tournament"],
-        image: "/hackathon.png"
+        icon: "🎤",
+        title: "Gandhar",
+        date: "Solo Singing",
+        desc: "A solo singing competition to showcase your melodious voice and musical talent.",
+        tags: ["Singing", "Solo", "Music"],
+        image: "/event_night.png",
+        registrationLink: "#"
     },
     {
         id: 6,
-        icon: "📚",
-        title: "Workshop Series",
-        date: "Day 1-3 • Multiple Sessions",
-        desc: "Learn from industry experts. Hands-on workshops on various topics.",
-        tags: ["Learning", "Workshop"],
-        image: "/event_night.png"
+        icon: "🩰",
+        title: "Mudra",
+        date: "Solo Dance",
+        desc: "Express emotions through movement in this captivating solo dance performance.",
+        tags: ["Dance", "Solo", "Performance"],
+        image: "/cultural_fest.png",
+        registrationLink: "#"
     },
     {
         id: 7,
-        icon: "🎪",
-        title: "Cultural Night",
-        date: "Day 3 • 7:00 PM",
-        desc: "A grand celebration of culture, dance, and traditions. Don't miss this spectacular finale!",
-        tags: ["Culture", "Celebration"],
-        image: "/cultural_fest.png"
+        icon: "🎨",
+        title: "Creative Strokes",
+        date: "Drawing",
+        desc: "Unleash your artistic vision and bring your imagination to life with colors.",
+        tags: ["Drawing", "Art", "Creativity"],
+        image: "/event_night.png",
+        registrationLink: "#"
+    },
+    {
+        id: 8,
+        icon: "🎭",
+        title: "Prangan",
+        date: "Drama",
+        desc: "The stage is set! Compete in a dramatic display of acting and storytelling.",
+        tags: ["Drama", "Theatre", "Acting"],
+        image: "/cultural_fest.png",
+        registrationLink: "#"
+    },
+    {
+        id: 9,
+        icon: "📷",
+        title: "Lenscape",
+        date: "Photography",
+        desc: "Capture the world through your lens and freeze moments in time.",
+        tags: ["Photography", "Visuals", "Camera"],
+        image: "/hackathon.png",
+        registrationLink: "#"
+    },
+    {
+        id: 10,
+        icon: "🖌️",
+        title: "Beyond the Canvas",
+        date: "Painting Without Paper",
+        desc: "Challenge conventional art by painting on surfaces beyond just paper.",
+        tags: ["Painting", "Art", "Unconventional"],
+        image: "/event_night.png",
+        registrationLink: "#"
+    },
+    {
+        id: 11,
+        icon: "🏵️",
+        title: "Rangreza",
+        date: "Rangoli Making",
+        desc: "Celebrate tradition with vibrant colors and intricate Rangoli designs.",
+        tags: ["Rangoli", "Art", "Tradition"],
+        image: "/cultural_fest.png",
+        registrationLink: "#"
+    },
+    {
+        id: 12,
+        icon: "🎬",
+        title: "Mind in Motion",
+        date: "Reel Making",
+        desc: "Create engaging short-form video content that moves minds and hearts.",
+        tags: ["Reels", "Video", "Content"],
+        image: "/hackathon.png",
+        registrationLink: "#"
+    },
+    {
+        id: 13,
+        icon: "🧠",
+        title: "Intellectia",
+        date: "Quiz",
+        desc: "Test your knowledge and intellect in this ultimate battle of brains.",
+        tags: ["Quiz", "Knowledge", "Trivia"],
+        image: "/hackathon.png",
+        registrationLink: "#"
     }
 ];
 
@@ -85,7 +153,10 @@ export default function EventsPage() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [touchStartX, setTouchStartX] = useState(0);
     const [touchEndX, setTouchEndX] = useState(0);
+    const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
     const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+    const popupRef = useRef<HTMLDivElement>(null);
+    const eventsCarouselRef = useRef<HTMLDivElement>(null);
 
     // Simulate Page Loading
     useEffect(() => {
@@ -93,6 +164,11 @@ export default function EventsPage() {
             setLoading(false);
         }, 1000);
         return () => clearTimeout(timer);
+    }, []);
+
+    // Start autoplay on mount
+    useEffect(() => {
+        startAutoplay();
     }, []);
 
     // Navigation Functions
@@ -110,6 +186,34 @@ export default function EventsPage() {
         setCurrentIndex(index);
         stopAutoplay();
     }, []);
+
+    // Handle event card click to show/hide popup
+    const handleEventClick = useCallback((eventId: number, index: number) => {
+        // If clicking the same event, toggle popup; otherwise show new popup
+        if (selectedEventId === eventId) {
+            setSelectedEventId(null);
+        } else {
+            setSelectedEventId(eventId);
+            // Also navigate to this slide if not already there
+            if (index !== currentIndex) {
+                setCurrentIndex(index);
+            }
+        }
+        stopAutoplay();
+    }, [selectedEventId, currentIndex]);
+
+    // Scroll to popup when it opens
+    useEffect(() => {
+        if (selectedEventId !== null && popupRef.current) {
+            // Small delay to ensure popup is rendered
+            setTimeout(() => {
+                popupRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+        }
+    }, [selectedEventId]);
 
     // Autoplay Functions
     const startAutoplay = useCallback(() => {
@@ -193,7 +297,7 @@ export default function EventsPage() {
         const translateZ = Math.abs(offset) * -100;
         const rotateY = offset * -15;
         const scale = Math.max(0.8, 1 - Math.abs(offset) * 0.2);
-        const opacity = Math.max(0.5, 1 - Math.abs(offset) * 0.3);
+        const opacity = 1;
 
         return {
             transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
@@ -216,13 +320,13 @@ export default function EventsPage() {
 
             <div className={styles.pageWrapper} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                 <div className={styles.eventsContainer}>
-                    <h1 className={styles.pageTitle}>Festival Events</h1>
+                    <h1 className={styles.pageTitle}>Events</h1>
                     <p className={styles.pageSubtitle}>
                         Experience the magic of Euphonious × Zyzzva '26
                     </p>
 
                     {/* Carousel Container */}
-                    <div className={styles.carouselContainer}>
+                    <div className={styles.carouselContainer} ref={eventsCarouselRef}>
                         <div className={styles.carousel}>
                             {eventsData.map((event, index) => {
                                 const cardStyle = getCardTransform(index);
@@ -231,7 +335,7 @@ export default function EventsPage() {
                                         key={event.id}
                                         className={styles.eventCard}
                                         style={cardStyle}
-                                        onClick={() => goToSlide(index)}
+                                        onClick={() => handleEventClick(event.id, index)}
                                     >
                                         <div className={styles.eventCardInner}>
                                             <img
@@ -241,17 +345,6 @@ export default function EventsPage() {
                                             />
                                             <div className={styles.eventContent}>
                                                 <h3 className={styles.eventTitle}>{event.title}</h3>
-                                            </div>
-                                            <div className={styles.eventDetails}>
-                                                <p className={styles.eventDate}>{event.date}</p>
-                                                <p className={styles.eventDescription}>{event.desc}</p>
-                                                <div className={styles.eventTags}>
-                                                    {event.tags.map((tag, tagIndex) => (
-                                                        <span key={tagIndex} className={styles.tag}>
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -297,6 +390,67 @@ export default function EventsPage() {
                             />
                         ))}
                     </div>
+
+                    {/* Event Description Popup */}
+                    {selectedEventId !== null && (
+                        <div className={styles.popupContainer} ref={popupRef}>
+                            {(() => {
+                                const selectedEvent = eventsData.find(e => e.id === selectedEventId);
+                                if (!selectedEvent) return null;
+                                return (
+                                    <div className={styles.popupContent}>
+                                        <button
+                                            className={styles.closeBtn}
+                                            onClick={() => {
+                                                // Scroll back to events carousel
+                                                if (eventsCarouselRef.current) {
+                                                    eventsCarouselRef.current.scrollIntoView({
+                                                        behavior: 'smooth',
+                                                        block: 'start'
+                                                    });
+                                                }
+                                                // Small delay before closing to allow scroll to start
+                                                setTimeout(() => {
+                                                    setSelectedEventId(null);
+                                                    startAutoplay();
+                                                }, 100);
+                                            }}
+                                            aria-label="Close description"
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M18 6L6 18M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                        <div className={styles.popupHeader}>
+                                            <span className={styles.popupIcon}>{selectedEvent.icon}</span>
+                                            <h2 className={styles.popupTitle}>{selectedEvent.title}</h2>
+                                            <p className={styles.popupDate}>{selectedEvent.date}</p>
+                                        </div>
+                                        <div className={styles.popupBody}>
+                                            <p className={styles.popupDescription}>{selectedEvent.desc}</p>
+                                            <div className={styles.popupTags}>
+                                                {selectedEvent.tags.map((tag, tagIndex) => (
+                                                    <span key={tagIndex} className={styles.popupTag}>
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                            {/* REGISTER BUTTON */}
+                                            <a
+                                                href={selectedEvent.registrationLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.registerBtn}
+                                            >
+                                                Register
+                                            </a>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+                        </div>
+                    )}
                 </div>
             </div>
         </>

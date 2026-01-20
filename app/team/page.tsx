@@ -11,22 +11,22 @@ const teamsData = [
         icon: "📢",
         gradient: "linear-gradient(135deg, #0cf0b4, #08a67d)",
         members: [
-            { id: 0, name: "Alex Chen", role: "Marketing Lead", image: "/event_night.png" },
-            { id: 1, name: "Sarah Kim", role: "Social Media Manager", image: "/hackathon.png" },
-            { id: 2, name: "Mike Johnson", role: "Content Strategist", image: "/cultural_fest.png" },
-            { id: 3, name: "Emma Davis", role: "Brand Manager", image: "/event_night.png" }
+            { id: 0, name: "Arijit Sarkar", role: "Marketing Member", image: "/event_night.png" },
+            { id: 1, name: "Ahana Sen", role: "Marketing Member", image: "/hackathon.png" },
+            { id: 2, name: "Somerita Das", role: "Marketing Member", image: "/cultural_fest.png" },
+            { id: 3, name: "Sneha Das", role: "Marketing Member", image: "/event_night.png" }
         ]
     },
     {
         id: 1,
-        name: "Designing",
-        icon: "🎨",
+        name: "Public Relations",
+        icon: "🎤",
         gradient: "linear-gradient(135deg, #0cf0b4, #06d9a0)",
         members: [
-            { id: 0, name: "David Lee", role: "Design Lead", image: "/hackathon.png" },
-            { id: 1, name: "Lisa Wang", role: "UI/UX Designer", image: "/cultural_fest.png" },
-            { id: 2, name: "Chris Brown", role: "Graphic Designer", image: "/event_night.png" },
-            { id: 3, name: "Nina Patel", role: "Motion Designer", image: "/hackathon.png" }
+            { id: 0, name: "Rachel Green", role: "PR Lead", image: "/hackathon.png" },
+            { id: 1, name: "Monica Geller", role: "Communications Manager", image: "/cultural_fest.png" },
+            { id: 2, name: "Ross Martinez", role: "Media Relations", image: "/event_night.png" },
+            { id: 3, name: "Chandler Bing", role: "Outreach Coordinator", image: "/hackathon.png" }
         ]
     },
     {
@@ -47,10 +47,12 @@ const teamsData = [
         icon: "⚙️",
         gradient: "linear-gradient(135deg, #0cf0b4, #02b894)",
         members: [
-            { id: 0, name: "James Anderson", role: "Core Lead", image: "/event_night.png" },
-            { id: 1, name: "Olivia Garcia", role: "Technical Lead", image: "/hackathon.png" },
-            { id: 2, name: "Daniel Moore", role: "Operations Head", image: "/cultural_fest.png" },
-            { id: 3, name: "Ava Thompson", role: "Strategy Lead", image: "/event_night.png" }
+            { id: 0, name: "Biprojit Paul Choudhury", role: "Core Member", image: "/event_night.png" },
+            { id: 1, name: "Arijit Sarkar", role: "Core Member", image: "/hackathon.png" },
+            { id: 2, name: "Debasmita Das", role: "Core Member", image: "/cultural_fest.png" },
+            { id: 3, name: "Sagnik Roy", role: "Core Member", image: "/event_night.png" },
+            { id: 4, name: "Somerita Das", role: "Core Member", image: "/hackathon.png" },
+            { id: 5, name: "Ahana Sen", role: "Core Member", image: "/cultural_fest.png" }
         ]
     }
 ];
@@ -216,7 +218,7 @@ export default function TeamPage() {
                         />
                     ))}
                 </div>
-            </div>
+            </div >
         </>
     );
 }

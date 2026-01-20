@@ -45,7 +45,12 @@ function Navbar() {
                     aria-label="Toggle menu"
                     onClick={toggleMenu}
                 >
-                    <span className="menu-icon"></span>
+                    <img
+                        src="/spraypaint.svg"
+                        alt="Menu"
+                        className="menu-icon-img"
+                        style={{ width: '40px', height: '40px', objectFit: 'contain' }}
+                    />
                 </button>
             </div>
 

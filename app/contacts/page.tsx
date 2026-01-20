@@ -60,12 +60,7 @@ export default function ContactsPage() {
             )}
 
             <div className={styles.pageWrapper}>
-                {/* Floating Gradient Orbs */}
-                <div className={styles.floatingOrbs}>
-                    <div className={`${styles.orb} ${styles.orb1}`}></div>
-                    <div className={`${styles.orb} ${styles.orb2}`}></div>
-                    <div className={`${styles.orb} ${styles.orb3}`}></div>
-                </div>
+
 
                 <div className={styles.contactsContainer}>
                     <h1 className={styles.pageTitle}>Get In Touch</h1>

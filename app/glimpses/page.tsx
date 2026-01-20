@@ -83,10 +83,12 @@ export default function GlimpsesPage() {
             onMouseMove={handleMouseMove}
             onMouseEnter={stopAutoPlay}
             onMouseLeave={startAutoPlay}
-            style={{
-                background: `radial-gradient(ellipse at ${mousePos.x}% ${mousePos.y}%, #1a3a3a 0%, #0a0a0a 100%)`
-            }}
         >
+            <div className={styles.reflectionFloor}></div>
+
+            <h1 className={styles.pageTitle}>Glimpses</h1>
+            <p className={styles.pageSubtitle}>A sneak peek into our journey</p>
+
             <div className={styles.carouselWrapper}>
                 {imageData.map((image, index) => (
                     <div

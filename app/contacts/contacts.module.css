@@ -1,4 +1,4 @@
-/* app/contacts/contacts.module.css - PREMIUM EDITION */
+/* app/contacts/contacts.module.css - GRAFFITI EDITION */
 
 /* --- Custom Font --- */
 @font-face {
@@ -12,76 +12,22 @@
 .pageWrapper {
     width: 100%;
     min-height: 100vh;
-    background: #0a0a0a;
     font-family: 'UrbanHeroes', Arial, sans-serif;
     position: relative;
     overflow-x: hidden;
     text-transform: uppercase;
+    background: url('/desktop1.png') center/cover no-repeat;
+    /* Opaque Background */
 }
 
-/* --- Floating Gradient Orbs --- */
-.floatingOrbs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.pageWrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark Overlay */
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.6;
-    animation: floatUpDown 15s ease-in-out infinite;
-}
-
-.orb1 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(12, 240, 180, 0.4), transparent 70%);
-    top: -10%;
-    left: -10%;
-    animation-duration: 20s;
-}
-
-.orb2 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(0, 217, 165, 0.3), transparent 70%);
-    bottom: -15%;
-    right: -10%;
-    animation-duration: 18s;
-    animation-delay: -5s;
-}
-
-.orb3 {
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(80, 250, 123, 0.25), transparent 70%);
-    top: 40%;
-    right: 10%;
-    animation-duration: 22s;
-    animation-delay: -10s;
-}
-
-@keyframes floatUpDown {
-
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(30px, -30px) scale(1.1);
-    }
-
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
 }
 
 /* --- Container --- */
@@ -93,32 +39,18 @@
     z-index: 1;
 }
 
-.contactsContainer::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 25% 25%, rgba(12, 240, 180, 0.12), transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(12, 240, 180, 0.08), transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-}
-
 /* --- Typography --- */
 .pageTitle {
     font-size: clamp(48px, 6vw, 80px);
     text-align: center;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #00ffcc, #00d9a5, #00b8d4, #00ffcc);
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s linear infinite, fadeZoomIn 0.8s ease-out;
+    color: #ffffff;
+    text-shadow: 2px 6px 0 #000000;
+    /* Hard shadow */
     letter-spacing: 4px;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 30px rgba(12, 240, 180, 0.6));
+    font-family: 'GraffitiOne', 'UrbanHeroes', sans-serif;
 }
 
 .pageSubtitle {
@@ -129,34 +61,7 @@
     letter-spacing: 2px;
     position: relative;
     z-index: 1;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-    animation: fadeZoomIn 0.8s ease-out 0.2s backwards;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes fadeZoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    text-shadow: 2px 2px 0 #000000;
 }
 
 /* --- Wrapper & Grid --- */
@@ -176,191 +81,98 @@
     gap: 30px;
 }
 
-/* --- Premium Contact Cards --- */
+/* --- Graffiti Contact Cards --- */
 .contactCard {
     position: relative;
-    background: linear-gradient(145deg, rgba(12, 240, 180, 0.08), rgba(0, 0, 0, 0.85));
-    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.85);
+    /* Opaque dark background */
+    border-radius: 0;
+    /* Sharp edges */
     padding: 35px;
-    border: 2px solid rgba(12, 240, 180, 0.25);
-    backdrop-filter: blur(20px) saturate(150%);
+    border: 3px solid #ffffff;
+    /* White border */
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(12, 240, 180, 0.15),
-        inset 0 0 20px rgba(12, 240, 180, 0.03);
-    transition: all 0.5s cubic-bezier(0.25, 0.85, 0.3, 1);
+        8px 8px 0 rgba(255, 215, 0, 0.6),
+        /* Yellow hard shadow */
+        0 20px 50px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s cubic-bezier(0.25, 0.85, 0.3, 1);
     text-align: center;
     color: white;
     overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%);
+    /* Asymmetric cut */
 }
 
-/* Staggered Animation Delays */
-.card1 {
-    animation: cardFlyIn 0.8s ease-out 0.1s backwards;
-}
-
-.card2 {
-    animation: cardFlyIn 0.8s ease-out 0.2s backwards;
-}
-
-.card3 {
-    animation: cardFlyIn 0.8s ease-out 0.3s backwards;
-}
-
-.card4 {
-    animation: cardFlyIn 0.8s ease-out 0.4s backwards;
-}
-
-@keyframes cardFlyIn {
-    from {
-        opacity: 0;
-        transform: translateY(50px) rotateX(-15deg);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-    }
-}
-
-/* Card Glow Effect */
+/* Card Glow Effect - Subtle Yellow */
 .cardGlow {
-    position: absolute;
-    inset: -2px;
-    border-radius: 24px;
-    background: linear-gradient(45deg,
-            rgba(12, 240, 180, 0.4),
-            transparent,
-            rgba(12, 240, 180, 0.4));
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: -1;
-    filter: blur(20px);
+    display: none;
+    /* Removed for flat look */
 }
 
 .contactCard:hover {
-    transform: translateY(-15px) scale(1.05) rotateX(5deg);
-    border-color: rgba(12, 240, 180, 0.6);
+    transform: translate(-4px, -4px);
     box-shadow:
-        0 30px 70px rgba(0, 0, 0, 0.6),
-        0 0 60px rgba(12, 240, 180, 0.4),
-        inset 0 0 40px rgba(12, 240, 180, 0.1);
-}
-
-.contactCard:hover .cardGlow {
-    opacity: 1;
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.6;
-    }
+        12px 12px 0 #ffd700,
+        /* Bright Yellow shadow */
+        0 30px 60px rgba(0, 0, 0, 0.9);
+    border-color: #ffd700;
 }
 
 .cardIcon {
     font-size: 56px;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px rgba(12, 240, 180, 0.6));
-    animation: iconFloat 3s ease-in-out infinite;
+    color: #ffd700;
+    /* Yellow icon */
+    text-shadow: 2px 2px 0 #000;
     transition: transform 0.3s ease;
 }
 
 .contactCard:hover .cardIcon {
-    transform: scale(1.2) rotateY(180deg);
-    animation: iconSpin 0.6s ease;
-}
-
-@keyframes iconFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes iconSpin {
-    from {
-        transform: rotateY(0deg) scale(1);
-    }
-
-    to {
-        transform: rotateY(360deg) scale(1.2);
-    }
+    transform: scale(1.1) rotate(5deg);
 }
 
 .contactCard h3 {
     font-size: clamp(22px, 2.5vw, 28px);
     margin-bottom: 12px;
-    color: #0cf0b4;
-    text-shadow: 0 0 20px rgba(12, 240, 180, 0.6);
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
     letter-spacing: 2px;
     font-weight: 700;
 }
 
 .contactCard p {
     font-size: clamp(14px, 1.8vw, 16px);
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 20px;
     line-height: 1.7;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    font-family: 'Verdana', sans-serif;
+    /* Readable body font */
+    font-weight: bold;
 }
 
-/* Premium Contact Links */
+/* Graffiti Contact Links */
 .contactLink {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    background: rgba(12, 240, 180, 0.15);
-    border: 2px solid rgba(12, 240, 180, 0.4);
-    border-radius: 14px;
-    color: #0cf0b4;
+    background: transparent;
+    border: 2px solid #ffd700;
+    border-radius: 0;
+    color: #ffd700;
     text-decoration: none;
     font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 800;
+    transition: all 0.3s ease;
     letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-}
-
-.contactLink::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(12, 240, 180, 0.3);
-    transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
-}
-
-.contactLink:hover::before {
-    width: 300px;
-    height: 300px;
-    top: -150px;
-    left: -150px;
+    text-transform: uppercase;
 }
 
 .contactLink:hover {
-    background: rgba(12, 240, 180, 0.25);
-    border-color: rgba(12, 240, 180, 0.8);
-    transform: scale(1.08);
-    box-shadow: 0 0 25px rgba(12, 240, 180, 0.5);
+    background: #ffd700;
+    color: #000;
+    box-shadow: 4px 4px 0 #fff;
+    transform: translate(-2px, -2px);
 }
 
 .contactLink svg {
@@ -386,53 +198,29 @@
     align-items: center;
     gap: 6px;
     padding: 10px 18px;
-    background: rgba(12, 240, 180, 0.1);
-    border: 1px solid rgba(12, 240, 180, 0.3);
-    border-radius: 12px;
-    color: #0cf0b4;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 0;
+    color: #ffffff;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 800;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .socialLink svg {
     width: 18px;
     height: 18px;
-    transition: all 0.3s ease;
 }
 
 .socialLink:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(12, 240, 180, 0.4);
+    background: #ffffff;
+    color: #000000;
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 #ffd700;
 }
 
-.socialLink:hover svg {
-    transform: rotate(360deg) scale(1.2);
-}
-
-/* Brand-specific colors on hover */
-.socialLink.instagram:hover {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    color: white;
-    border-color: #e6683c;
-}
-
-.socialLink.facebook:hover {
-    background: #1877f2;
-    color: white;
-    border-color: #1877f2;
-}
-
-.socialLink.twitter:hover {
-    background: #1da1f2;
-    color: white;
-    border-color: #1da1f2;
-}
-
-/* --- Premium Form Section --- */
+/* --- Graffiti Form Section --- */
 .contactFormWrapper {
     position: relative;
     animation: slideInRight 0.8s ease 0.3s backwards;
@@ -451,48 +239,35 @@
 }
 
 .formContainer {
-    background: linear-gradient(145deg, rgba(12, 240, 180, 0.08), rgba(0, 0, 0, 0.85));
-    border-radius: 28px;
+    background: rgba(0, 0, 0, 0.85);
+    /* Opaque */
+    border-radius: 0;
+    /* Sharp */
     padding: 45px;
-    border: 2px solid rgba(12, 240, 180, 0.25);
-    backdrop-filter: blur(25px) saturate(150%);
+    border: 3px solid #ffd700;
+    /* Yellow Border */
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(12, 240, 180, 0.2),
-        inset 0 0 30px rgba(12, 240, 180, 0.05);
+        10px 10px 0 #ffffff,
+        /* White hard shadow */
+        0 20px 60px rgba(0, 0, 0, 0.8);
     position: relative;
-    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
 }
 
 .formContainer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(12, 240, 180, 0.1), transparent);
-    animation: shimmerSlide 3s infinite;
-}
-
-@keyframes shimmerSlide {
-    0% {
-        left: -100%;
-    }
-
-    100% {
-        left: 100%;
-    }
+    display: none;
+    /* No shimmer */
 }
 
 .formContainer h2 {
     font-size: clamp(28px, 3.5vw, 38px);
     margin-bottom: 35px;
-    color: #0cf0b4;
-    text-shadow: 0 0 25px rgba(12, 240, 180, 0.6);
+    color: #ffd700;
+    text-shadow: 2px 2px 0 #000;
     text-align: center;
     letter-spacing: 2px;
     font-weight: 800;
+    font-family: 'GraffitiOne', sans-serif;
 }
 
 .contactForm {
@@ -503,7 +278,7 @@
     z-index: 1;
 }
 
-/* Premium Form Groups with Floating Labels */
+/* Form Groups */
 .formGroup {
     position: relative;
     display: flex;
@@ -515,11 +290,13 @@
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 16px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     padding: 0 5px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .formGroup.focused label,
@@ -528,55 +305,39 @@
     top: -12px;
     left: 15px;
     font-size: 13px;
-    color: #0cf0b4;
-    text-shadow: 0 0 10px rgba(12, 240, 180, 0.8);
+    color: #ffd700;
+    /* Yellow Label */
+    background: #000;
+    padding: 2px 6px;
+    text-shadow: none;
 }
 
 .formGroup input,
 .formGroup textarea {
     width: 100%;
     padding: 18px 22px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(12, 240, 180, 0.25);
-    border-radius: 14px;
+    background: #0a0a0a;
+    /* Dark opaque */
+    border: 2px solid #ffffff;
+    border-radius: 0;
     color: white;
     font-size: 16px;
-    font-family: 'UrbanHeroes', Arial, sans-serif;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Verdana', sans-serif;
+    transition: all 0.2s ease;
     outline: none;
     position: relative;
     z-index: 1;
 }
 
-.formGroup input::placeholder,
-.formGroup textarea::placeholder {
-    color: transparent;
-}
-
-/* Input Glow Effect */
 .inputGlow {
-    position: absolute;
-    inset: -2px;
-    border-radius: 14px;
-    background: linear-gradient(45deg, rgba(12, 240, 180, 0.5), rgba(80, 250, 123, 0.5));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-    filter: blur(10px);
+    display: none;
 }
 
 .formGroup.focused input,
 .formGroup.focused textarea {
-    border-color: rgba(12, 240, 180, 0.7);
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow:
-        0 0 30px rgba(12, 240, 180, 0.3),
-        inset 0 0 15px rgba(12, 240, 180, 0.1);
-    transform: scale(1.02);
-}
-
-.formGroup.focused .inputGlow {
-    opacity: 1;
+    border-color: #ffd700;
+    background: #000;
+    box-shadow: 4px 4px 0 rgba(255, 215, 0, 0.3);
 }
 
 .formGroup textarea {
@@ -591,63 +352,54 @@
     bottom: 12px;
     right: 18px;
     font-size: 12px;
-    color: rgba(12, 240, 180, 0.6);
+    color: #ffd700;
     font-weight: 600;
     z-index: 2;
 }
 
-/* Premium Submit Button */
+/* Graffiti Submit Button */
 .submitBtn {
     padding: 20px 45px;
-    background: linear-gradient(135deg, rgba(12, 240, 180, 0.25), rgba(12, 240, 180, 0.15));
-    border: 2px solid rgba(12, 240, 180, 0.5);
-    border-radius: 14px;
-    color: #0cf0b4;
+    background: #ffd700;
+    border: 2px solid #000000;
+    border-radius: 0;
+    color: #000000;
     font-size: 18px;
     font-family: 'UrbanHeroes', headerFont, sans-serif;
     letter-spacing: 2px;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     text-transform: uppercase;
-    font-weight: 700;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    font-weight: 800;
+    box-shadow: 5px 5px 0 #ffffff;
     position: relative;
     overflow: hidden;
 }
 
 .btnGlow {
-    position: absolute;
-    inset: -3px;
-    border-radius: 14px;
-    background: linear-gradient(45deg, rgba(12, 240, 180, 0.6), rgba(80, 250, 123, 0.6));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: -1;
-    filter: blur(15px);
+    display: none;
 }
 
 .submitBtn:hover {
-    background: linear-gradient(135deg, rgba(12, 240, 180, 0.4), rgba(12, 240, 180, 0.25));
-    border-color: rgba(12, 240, 180, 0.9);
-    transform: translateY(-4px) scale(1.03);
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffd700;
+    transform: translate(-2px, -2px);
     box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(12, 240, 180, 0.6);
-}
-
-.submitBtn:hover .btnGlow {
-    opacity: 1;
-    animation: glowPulse 1.5s ease-in-out infinite;
+        8px 8px 0 #ffd700,
+        0 0 20px rgba(255, 215, 0, 0.4);
 }
 
 .submitBtn:active {
-    transform: translateY(-2px) scale(1.01);
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 #ffd700;
 }
 
 /* Success Animation */
 .submitBtn.success {
-    background: linear-gradient(135deg, rgba(80, 250, 123, 0.4), rgba(80, 250, 123, 0.2));
-    border-color: rgba(80, 250, 123, 0.8);
+    background: #ffffff;
+    color: #000000;
+    border-color: #000000;
     animation: successPulse 0.6s ease;
 }
 
@@ -671,11 +423,6 @@
 
     .contactCards {
         grid-template-columns: 1fr;
-    }
-
-    .orb {
-        width: 300px !important;
-        height: 300px !important;
     }
 }
 
@@ -716,27 +463,5 @@
 
     .cardIcon {
         font-size: 42px;
-    }
-
-    .orb {
-        display: none;
-    }
-}
-
-/* --- Accessibility --- */
-@media (prefers-reduced-motion: reduce) {
-
-    .contactCard,
-    .formContainer,
-    .cardGlow,
-    .inputGlow,
-    .btnGlow,
-    .orb,
-    .submitBtn,
-    .contactLink,
-    .socialLink {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.1s !important;
     }
 }

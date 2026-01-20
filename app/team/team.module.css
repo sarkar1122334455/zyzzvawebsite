@@ -12,6 +12,16 @@
     overflow: hidden;
     perspective: 1000px;
     transition: background 0.3s ease;
+    background: url('/hackathon.png') center/cover no-repeat fixed;
+}
+
+.carouselContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Header */
@@ -66,6 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 /* Team Card Styles */
