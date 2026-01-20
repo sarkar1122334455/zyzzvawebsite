@@ -19,7 +19,7 @@ export default function SponsorPage() {
     // --- Data for Sponsors ---
     const titleSponsor = {
         name: "Premier Company",
-        desc: "Proudly presenting Euphonious × Zyzzva '26",
+        desc: "Proudly presenting Euphonious x Zyzzva '26",
         tagline: "Title Sponsor",
         icon: "👑"
     };

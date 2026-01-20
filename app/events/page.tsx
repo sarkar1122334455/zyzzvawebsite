@@ -154,6 +154,7 @@ export default function EventsPage() {
     const [touchStartX, setTouchStartX] = useState(0);
     const [touchEndX, setTouchEndX] = useState(0);
     const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+    const [scrollY, setScrollY] = useState(0);
     const autoplayRef = useRef<NodeJS.Timeout | null>(null);
     const popupRef = useRef<HTMLDivElement>(null);
     const eventsCarouselRef = useRef<HTMLDivElement>(null);
@@ -164,6 +165,16 @@ export default function EventsPage() {
             setLoading(false);
         }, 1000);
         return () => clearTimeout(timer);
+    }, []);
+
+    // Parallax scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     // Start autoplay on mount
@@ -318,11 +329,18 @@ export default function EventsPage() {
                 </div>
             )}
 
-            <div className={styles.pageWrapper} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            <div
+                className={styles.pageWrapper}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                style={{
+                    backgroundPositionY: `${scrollY * 0.5}px`
+                }}
+            >
                 <div className={styles.eventsContainer}>
                     <h1 className={styles.pageTitle}>Events</h1>
                     <p className={styles.pageSubtitle}>
-                        Experience the magic of Euphonious × Zyzzva '26
+                        Experience the magic of Euphonious x Zyzzva '26
                     </p>
 
                     {/* Carousel Container */}

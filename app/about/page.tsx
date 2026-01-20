@@ -45,8 +45,7 @@ export default function AboutPage() {
 
                         {/* TEXT SECTION */}
                         <div className={styles.storySide}>
-                            <h1 className={styles.title}>Euphonious × Zyzzva '26</h1>
-                            <p className={styles.subtitle}>Where Tradition Meets The Future</p>
+                            <img src="/logo.png" alt="Euphonious x Zyzzva" className={styles.logoHeading} />
 
                             {/* 1. About GNIT */}
                             <div className={styles.storyBox} onMouseEnter={playHoverSound}>

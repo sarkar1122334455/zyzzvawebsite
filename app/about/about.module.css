@@ -234,6 +234,15 @@
     animation: fadeIn 1s ease 0.5s backwards;
 }
 
+.logoHeading {
+    width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+    animation: fadeIn 1s ease backwards;
+}
+
 @keyframes shimmer {
     0% {
         background-position: 0% 50%;
@@ -277,7 +286,7 @@
 
 .storyBox {
     padding: 0;
-    margin: 40px 20px;
+    margin: 10px 20px;
     width: 100%;
     background: transparent;
     border-radius: 0;
