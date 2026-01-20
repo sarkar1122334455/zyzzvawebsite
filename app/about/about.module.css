@@ -351,7 +351,7 @@
     text-align: center;
 
     /* ✅ Font Updated: Urban Heroes */
-    font-family: 'UrbanHeroes', var(--font-graffiti), cursive;
+    font-family: Verdana;
 }
 
 .storyBox p {
