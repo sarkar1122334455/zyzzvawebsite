@@ -1,0 +1,279 @@
+/* app/components/Navbar.module.css */
+
+/* --- Top Bar Backdrop --- */
+.topBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transform: translateY(calc(100vh - 100% - 30px));
+    /* Initial bottom position */
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    /* Let clicks pass through when transparent */
+}
+
+/* Force top position */
+.atTop {
+    transform: translateY(0);
+}
+
+/* --- Menu Toggle Button --- */
+.menuButton {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border-radius: 0;
+    /* Sharp edges for graffiti look */
+    border: 3px solid #ffffff;
+    background: #000000;
+    box-shadow:
+        5px 5px 0 #ffd700,
+        0 10px 20px rgba(0, 0, 0, 0.5);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+}
+
+.menuButton:hover {
+    transform: translate(-3px, -3px);
+    box-shadow:
+        8px 8px 0 #ffd700,
+        0 15px 30px rgba(0, 0, 0, 0.6);
+    background: #1a1a1a;
+}
+
+.menuButton:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 #ffd700;
+}
+
+.menuIconImg {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.menuButton:hover .menuIconImg {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+/* --- Full Screen Overlay --- */
+.menuOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    /* Opaque dark */
+    backdrop-filter: blur(10px);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 998;
+    transition: opacity 0.4s ease;
+}
+
+.menuOverlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menuOverlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/desktop1.png') center/cover no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* --- Menu Container --- */
+.menuRadial {
+    position: relative;
+    width: min(600px, 90vw);
+    height: min(600px, 90vw);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Menu Items (Stickers) --- */
+.orbit {
+    position: absolute;
+    inset: 0;
+    animation: rotateEntrance 0.8s ease-out forwards;
+}
+
+@keyframes rotateEntrance {
+    from {
+        transform: rotate(-30deg) scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.orbitItem {
+    position: absolute;
+    padding: 15px 30px;
+    background: #000000;
+    border: 3px solid #ffd700;
+    color: #ffffff;
+    font-family: 'GraffitiOne', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    box-shadow: 6px 6px 0 #ffffff;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.orbitItem:hover {
+    background: #ffd700;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 8px 8px 0 #ffffff;
+    transform: scale(1.1) rotate(-3deg);
+    z-index: 10;
+}
+
+/* Positioning Items manually for "Sticker Bomb" look or organized chaos */
+/* Top */
+.orbitItem:nth-child(1) {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(-5deg);
+}
+
+/* Top Right */
+.orbitItem:nth-child(2) {
+    top: 25%;
+    right: 5%;
+    transform: translate(0, 0) rotate(10deg);
+}
+
+/* Bottom Right */
+.orbitItem:nth-child(3) {
+    bottom: 25%;
+    right: 10%;
+    transform: translate(0, 0) rotate(-8deg);
+}
+
+/* Bottom */
+.orbitItem:nth-child(4) {
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0) rotate(3deg);
+}
+
+/* Bottom Left */
+.orbitItem:nth-child(5) {
+    bottom: 25%;
+    left: 10%;
+    transform: translate(0, 0) rotate(-12deg);
+}
+
+/* Top Left */
+.orbitItem:nth-child(6) {
+    top: 25%;
+    left: 5%;
+    transform: translate(0, 0) rotate(8deg);
+}
+
+/* --- Center Button (Home/Close) --- */
+.menuCenter {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: #ffd700;
+    border: 4px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'GraffitiOne', sans-serif;
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+    transition: all 0.3s ease;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.menuCenter:hover {
+    transform: scale(1.1) rotate(180deg);
+    background: #ffffff;
+    border-color: #ffd700;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+}
+
+.menuCenter span {
+    transition: transform 0.3s ease;
+}
+
+.menuCenter:hover span {
+    transform: rotate(-180deg);
+    /* Counter-rotate text so it stays readable */
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+    .menuRadial {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        gap: 20px;
+        padding-top: 80px;
+    }
+
+    .orbit {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        gap: 20px;
+    }
+
+    .orbitItem {
+        position: relative;
+        inset: auto;
+        transform: none !important;
+        /* Reset positions */
+        width: 80%;
+        text-align: center;
+        font-size: 20px;
+        padding: 12px;
+    }
+
+    .orbitItem:hover {
+        transform: scale(1.05) !important;
+    }
+
+    .menuCenter {
+        margin-top: 30px;
+        width: 80px;
+        height: 80px;
+        font-size: 14px;
+    }
+}

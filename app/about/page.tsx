@@ -98,6 +98,7 @@ export default function AboutPage() {
                         {/* TEXT SECTION */}
                         <div className={styles.storySide}>
                             <h1 className={styles.title}>Euphonious × Zyzzva '26</h1>
+                            <p className={styles.subtitle}>Where Tradition Meets The Future</p>
 
                             {/* VIDEO SECTION */}
                             <div className={styles.videoBox}>

@@ -4,6 +4,7 @@ import React, { useState, useEffect, memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useIntro } from "../context/IntroContext";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -27,61 +28,56 @@ function Navbar() {
         return null;
     }
 
-    // Determine if we should force the navbar to top
-    // If NOT Home, always show at top.
-    // If Home, only show at top if menu is open (or rely on CSS default which is bottom).
     const isAtTop = !isHome || menuOpen;
 
     return (
         <>
             {/* MENU BAR */}
             <div
-                className={`top-backdrop ${isAtTop ? "at-top" : ""}`}
+                className={`${styles.topBackdrop} ${isAtTop ? styles.atTop : ""}`}
                 id="menuBar"
             >
                 <button
-                    className={`menu-button ${menuOpen ? "open" : ""}`}
+                    className={styles.menuButton}
                     id="menuToggle"
                     aria-label="Toggle menu"
                     onClick={toggleMenu}
                 >
                     <img
-                        src="/spraypaint.svg"
+                        src="/spraypaint.png"
                         alt="Menu"
-                        className="menu-icon-img"
-                        style={{ width: '40px', height: '40px', objectFit: 'contain' }}
+                        className={styles.menuIconImg}
                     />
                 </button>
             </div>
 
             {/* MENU OVERLAY */}
             <div
-                className={`menu-overlay ${menuOpen ? "show" : ""}`}
+                className={`${styles.menuOverlay} ${menuOpen ? styles.show : ""}`}
                 id="menuOverlay"
                 aria-hidden={!menuOpen}
                 onClick={(e) => {
-                    // Close if clicking the background overlay
                     if (e.target === e.currentTarget) toggleMenu();
                 }}
             >
-                <div className="menu-radial">
-                    <div className="orbit">
-                        <Link href="/about" className="orbit-item" onClick={() => setMenuOpen(false)}>About</Link>
-                        <Link href="/team" className="orbit-item" onClick={() => setMenuOpen(false)}>Team</Link>
-                        <Link href="/contacts" className="orbit-item" onClick={() => setMenuOpen(false)}>Contacts</Link>
-                        <Link href="/events" className="orbit-item" onClick={() => setMenuOpen(false)}>Events</Link>
-                        <Link href="/glimpses" className="orbit-item" onClick={() => setMenuOpen(false)}>Glimpses</Link>
-                        <Link href="/sponsor" className="orbit-item" onClick={() => setMenuOpen(false)}>Sponsor</Link>
+                <div className={styles.menuRadial}>
+                    <div className={styles.orbit}>
+                        <Link href="/about" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>About</Link>
+                        <Link href="/team" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>Team</Link>
+                        <Link href="/contacts" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>Contacts</Link>
+                        <Link href="/events" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>Events</Link>
+                        <Link href="/glimpses" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>Glimpses</Link>
+                        <Link href="/sponsor" className={styles.orbitItem} onClick={() => setMenuOpen(false)}>Sponsor</Link>
                     </div>
                     <button
-                        className="menu-center"
+                        className={styles.menuCenter}
                         id="loginBtn"
                         onClick={() => {
                             window.location.href = "/";
                             setMenuOpen(false);
                         }}
                     >
-                        Home
+                        <span>Home</span>
                     </button>
                 </div>
             </div>
@@ -89,5 +85,4 @@ function Navbar() {
     );
 }
 
-// Export memoized version to prevent unnecessary re-renders
 export default memo(Navbar);

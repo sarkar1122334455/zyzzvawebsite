@@ -15,7 +15,7 @@ interface Particle {
 
 // Configuration constants
 const CONFIG = {
-    colors: ["#FF00FF", "#00FFFF", "#FFFF00", "#FF0000", "#00FF00", "#FFFFFF"],
+    colors: ["#FF00FF", "#00FFFF", "#FFFF00", "#FF0000", "#FFFFFF"],
     particleDensity: 3, // particles per frame when moving
     minParticleSize: 1.5,
     maxParticleSize: 4,
@@ -60,8 +60,8 @@ export default function SprayCursor() {
             mouse.current.x = e.clientX;
             mouse.current.y = e.clientY;
 
-            // Smooth cursor follow
-            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            // Smooth cursor follow with centering
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
         };
 
         window.addEventListener("mousemove", handleMouseMove, { passive: true });
@@ -207,12 +207,12 @@ export default function SprayCursor() {
                     width: `${CONFIG.cursorSize}px`,
                     height: `${CONFIG.cursorSize}px`,
                     transform: "translate(-50%, -50%)",
-                    transition: "transform 0.05s ease-out",
+                    transition: "transform 0.05s linear", /* Changed to linear for snappier feel */
                     willChange: "transform",
                 }}
             >
                 <img
-                    src="/spraypaint.svg"
+                    src="/spraypaint.png"
                     alt="spray paint cursor"
                     style={{
                         width: "100%",
