@@ -9,7 +9,7 @@ const teamsData = [
         id: 0,
         name: "Marketing",
         icon: "📢",
-        gradient: "linear-gradient(135deg, #0cf0b4, #08a67d)",
+        gradient: "linear-gradient(135deg, #ffd700, #ffa500)", // Yellow/Gold
         members: [
             { id: 0, name: "Arijit Sarkar", role: "Marketing Member", image: "/event_night.png" },
             { id: 1, name: "Ahana Sen", role: "Marketing Member", image: "/hackathon.png" },
@@ -21,7 +21,7 @@ const teamsData = [
         id: 1,
         name: "Public Relations",
         icon: "🎤",
-        gradient: "linear-gradient(135deg, #0cf0b4, #06d9a0)",
+        gradient: "linear-gradient(135deg, #ffd700, #ffb700)", // Yellow/Gold
         members: [
             { id: 0, name: "Rachel Green", role: "PR Lead", image: "/hackathon.png" },
             { id: 1, name: "Monica Geller", role: "Communications Manager", image: "/cultural_fest.png" },
@@ -33,7 +33,7 @@ const teamsData = [
         id: 2,
         name: "Media",
         icon: "📸",
-        gradient: "linear-gradient(135deg, #0cf0b4, #04c9a3)",
+        gradient: "linear-gradient(135deg, #ffd700, #ffc800)", // Yellow/Gold
         members: [
             { id: 0, name: "Ryan Taylor", role: "Media Lead", image: "/cultural_fest.png" },
             { id: 1, name: "Jessica Liu", role: "Photographer", image: "/event_night.png" },
@@ -45,7 +45,7 @@ const teamsData = [
         id: 3,
         name: "Core",
         icon: "⚙️",
-        gradient: "linear-gradient(135deg, #0cf0b4, #02b894)",
+        gradient: "linear-gradient(135deg, #ffd700, #e6ac00)", // Yellow/Gold
         members: [
             { id: 0, name: "Biprojit Paul Choudhury", role: "Core Member", image: "/event_night.png" },
             { id: 1, name: "Arijit Sarkar", role: "Core Member", image: "/hackathon.png" },
@@ -162,9 +162,6 @@ export default function TeamPage() {
                 onMouseMove={handleMouseMove}
                 onMouseEnter={stopAutoPlay}
                 onMouseLeave={startAutoPlay}
-                style={{
-                    background: `radial-gradient(ellipse at ${mousePos.x}% ${mousePos.y}%, #1a3a3a 0%, #0a0a0a 100%)`
-                }}
             >
 
                 {/* Header */}
