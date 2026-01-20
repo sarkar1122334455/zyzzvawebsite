@@ -1,0 +1,506 @@
+/* app/about/about.module.css */
+
+/* --- Custom Font --- */
+@font-face {
+    font-family: 'UrbanHeroes';
+    src: url('/font/Urban Heroes.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProtestRevolutionLocal';
+    src: url('/font/ProtestRevolution-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'deloc';
+    src: url('/font/DOCALLISME ON STREET.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- Page Wrapper (Scoped Body) --- */
+.pageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    /* Ensure this image is in public/assets/ */
+    background: url("/desktop1.png") center/100% auto no-repeat scroll;
+
+    /* ✅ Font Updated: Space Grotesk */
+    /* ✅ Font Updated: GraffitiOne */
+    font-family: 'GraffitiOne', sans-serif;
+
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+
+.pageWrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/desktop1.png") center/100% auto no-repeat scroll;
+    filter: brightness(0.7);
+    z-index: 0;
+}
+
+.pageWrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+/* --- Main Container --- */
+.aboutContainer {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding: 80px 40px 40px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.aboutContainer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.contentWrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    /* Center the content */
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* --- Slider Section --- */
+.sliderBox {
+    position: relative;
+    width: 55%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(255, 255, 255, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.sliderBox:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mediaContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.mediaItem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: fadeIn 0.6s ease;
+}
+
+.sliderOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* --- Arrows --- */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    font-size: 32px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 5;
+    font-weight: bold;
+}
+
+.arrowLeft {
+    left: 20px;
+}
+
+.arrowRight {
+    right: 20px;
+}
+
+.arrow:hover {
+    transform: translateY(-50%) scale(1.15);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+}
+
+.arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* --- Story Section --- */
+.storySide {
+    width: 85%;
+    /* Increased width for centered layout */
+    max-width: 1600px;
+    /* Max width to keep it readable */
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    margin-bottom: 20px;
+
+    /* ✅ Font Updated: Urban Heroes */
+    font-family: 'UrbanHeroes', var(--font-graffiti), cursive;
+
+    background: linear-gradient(135deg, #ffffff, #e0e0e0, #cccccc, #ffffff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+    text-align: center;
+    letter-spacing: 3px;
+    /* Removed text-shadow (glow) as requested */
+    /* Removed text-stroke to make solid */
+    paint-order: stroke fill;
+}
+
+.subtitle {
+    font-size: clamp(18px, 2.5vw, 24px);
+    text-align: center;
+    color: #ffd700;
+    margin-top: -15px;
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'ProtestRevolutionLocal', 'GraffitiOne', sans-serif;
+    animation: fadeIn 1s ease 0.5s backwards;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --- Video/Media Section integrated into Cards --- */
+.boxMedia {
+    flex: 0 0 40%;
+    /* Fixed 40% width for video */
+    width: 40%;
+    min-height: 300px;
+    height: auto;
+    background: #000;
+    /* Allow height to adjust */
+    position: relative;
+    overflow: hidden;
+    /* Sharp edges */
+    border-radius: 0;
+    box-shadow: 4px 4px 0 rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+    align-self: stretch;
+    z-index: 1;
+    /* Ensure it stretches to match text height */
+}
+
+.boxMedia video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.storyBox {
+    padding: 0;
+    margin: 40px 20px;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.1),
+        8px 8px 0 rgba(0, 0, 0, 0.5),
+        0 30px 60px rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+    animation: slideInRight 0.8s ease 0.2s both;
+    clip-path: polygon(2% 0, 100% 0, 100% 98%, 98% 100%, 0 100%, 0 2%);
+    position: relative;
+    display: flex;
+    /* Enable Split Layout */
+    flex-wrap: nowrap;
+    /* NO WRAPPING ON DESKTOP */
+    align-items: stretch;
+    /* Stretch to match height */
+    overflow: hidden;
+}
+
+.boxContent {
+    flex: 0 0 60%;
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    /* Prevent squashing */
+    background: #000000;
+}
+
+.storyBox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, #ffd700 0%, transparent 100%);
+}
+
+.storyBox:hover {
+    transform: translate(-3px, -3px);
+    box-shadow:
+        0 0 0 2px rgba(255, 215, 0, 0.4),
+        /* Gold outline */
+        10px 10px 0 rgba(0, 0, 0, 0.6),
+        0 40px 80px rgba(0, 0, 0, 0.8);
+}
+
+.storyBox h2 {
+    font-size: clamp(24px, 3vw, 36px);
+    margin-bottom: 20px;
+    color: #ffd700;
+    /* Gold text for headers */
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 1);
+    /* Hard shadow */
+    letter-spacing: 2px;
+    text-align: center;
+
+    /* ✅ Font Updated: Urban Heroes */
+    font-family: 'UrbanHeroes', var(--font-graffiti), cursive;
+}
+
+.storyBox p {
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 1);
+    margin-bottom: 15px;
+    text-align: justify;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    font-family: Verdana;
+    text-align: center;
+}
+
+.storyExtra {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    color: rgba(255, 255, 255, 1) !important;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 968px) {
+    .contentWrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .storyBox {
+        flex-wrap: wrap;
+    }
+
+    .boxContent,
+    .boxMedia {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: unset;
+    }
+
+    .sliderBox {
+        width: 100%;
+        height: 400px;
+    }
+
+    .storySide {
+        width: 100%;
+    }
+
+    .aboutContainer {
+        padding: 80px 20px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sliderBox {
+        height: 300px;
+        border-radius: 16px;
+    }
+
+    .arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .arrowLeft {
+        left: 10px;
+    }
+
+    .arrowRight {
+        right: 10px;
+    }
+
+    .storyBox {
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutContainer {
+        padding: 60px 15px 20px;
+    }
+
+    .sliderBox {
+        height: 250px;
+        border-radius: 12px;
+    }
+
+    .storyBox {
+        padding: 20px 15px;
+        margin: 10px 0;
+    }
+
+    .title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .storyBox h2 {
+        font-size: 22px;
+    }
+
+    .storyBox p {
+        font-size: 14px;
+        text-align: left;
+        /* Better for small screens */
+    }
+
+    .arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}

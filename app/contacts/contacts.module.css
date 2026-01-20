@@ -1,0 +1,467 @@
+/* app/contacts/contacts.module.css - GRAFFITI EDITION */
+
+/* --- Custom Font --- */
+@font-face {
+    font-family: 'UrbanHeroes';
+    src: url('/font/Urban Heroes.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- Page Wrapper --- */
+.pageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'UrbanHeroes', Arial, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+    text-transform: uppercase;
+    background: url('/desktop1.png') center/cover no-repeat;
+    /* Opaque Background */
+}
+
+.pageWrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark Overlay */
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- Container --- */
+.contactsContainer {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 40px 60px;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Typography --- */
+.pageTitle {
+    font-size: clamp(48px, 6vw, 80px);
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 2px 6px 0 #000000;
+    /* Hard shadow */
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 1;
+    font-family: 'GraffitiOne', 'UrbanHeroes', sans-serif;
+}
+
+.pageSubtitle {
+    text-align: center;
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 0 #000000;
+}
+
+/* --- Wrapper & Grid --- */
+.contactsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.contactCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* --- Graffiti Contact Cards --- */
+.contactCard {
+    position: relative;
+    background: rgba(0, 0, 0, 0.85);
+    /* Opaque dark background */
+    border-radius: 0;
+    /* Sharp edges */
+    padding: 35px;
+    border: 3px solid #ffffff;
+    /* White border */
+    box-shadow:
+        8px 8px 0 rgba(255, 215, 0, 0.6),
+        /* Yellow hard shadow */
+        0 20px 50px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s cubic-bezier(0.25, 0.85, 0.3, 1);
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    clip-path: polygon(5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%, 0 5%);
+    /* Asymmetric cut */
+}
+
+/* Card Glow Effect - Subtle Yellow */
+.cardGlow {
+    display: none;
+    /* Removed for flat look */
+}
+
+.contactCard:hover {
+    transform: translate(-4px, -4px);
+    box-shadow:
+        12px 12px 0 #ffd700,
+        /* Bright Yellow shadow */
+        0 30px 60px rgba(0, 0, 0, 0.9);
+    border-color: #ffd700;
+}
+
+.cardIcon {
+    font-size: 56px;
+    margin-bottom: 20px;
+    color: #ffd700;
+    /* Yellow icon */
+    text-shadow: 2px 2px 0 #000;
+    transition: transform 0.3s ease;
+}
+
+.contactCard:hover .cardIcon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contactCard h3 {
+    font-size: clamp(22px, 2.5vw, 28px);
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 #000;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.contactCard p {
+    font-size: clamp(14px, 1.8vw, 16px);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+    line-height: 1.7;
+    font-family: 'Verdana', sans-serif;
+    /* Readable body font */
+    font-weight: bold;
+}
+
+/* Graffiti Contact Links */
+.contactLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #ffd700;
+    border-radius: 0;
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contactLink:hover {
+    background: #ffd700;
+    color: #000;
+    box-shadow: 4px 4px 0 #fff;
+    transform: translate(-2px, -2px);
+}
+
+.contactLink svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.contactLink:hover svg {
+    transform: translateX(5px);
+}
+
+/* Social Links */
+.socialLinks {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.socialLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+
+.socialLink svg {
+    width: 18px;
+    height: 18px;
+}
+
+.socialLink:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translate(-3px, -3px);
+    box-shadow: 4px 4px 0 #ffd700;
+}
+
+/* --- Graffiti Form Section --- */
+.contactFormWrapper {
+    position: relative;
+    animation: slideInRight 0.8s ease 0.3s backwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.formContainer {
+    background: rgba(0, 0, 0, 0.85);
+    /* Opaque */
+    border-radius: 0;
+    /* Sharp */
+    padding: 45px;
+    border: 3px solid #ffd700;
+    /* Yellow Border */
+    box-shadow:
+        10px 10px 0 #ffffff,
+        /* White hard shadow */
+        0 20px 60px rgba(0, 0, 0, 0.8);
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
+}
+
+.formContainer::before {
+    display: none;
+    /* No shimmer */
+}
+
+.formContainer h2 {
+    font-size: clamp(28px, 3.5vw, 38px);
+    margin-bottom: 35px;
+    color: #ffd700;
+    text-shadow: 2px 2px 0 #000;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-family: 'GraffitiOne', sans-serif;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Groups */
+.formGroup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    padding: 0 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.formGroup.focused label,
+.formGroup input:not(:placeholder-shown)~label,
+.formGroup textarea:not(:placeholder-shown)~label {
+    top: -12px;
+    left: 15px;
+    font-size: 13px;
+    color: #ffd700;
+    /* Yellow Label */
+    background: #000;
+    padding: 2px 6px;
+    text-shadow: none;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 18px 22px;
+    background: #0a0a0a;
+    /* Dark opaque */
+    border: 2px solid #ffffff;
+    border-radius: 0;
+    color: white;
+    font-size: 16px;
+    font-family: 'Verdana', sans-serif;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+.inputGlow {
+    display: none;
+}
+
+.formGroup.focused input,
+.formGroup.focused textarea {
+    border-color: #ffd700;
+    background: #000;
+    box-shadow: 4px 4px 0 rgba(255, 215, 0, 0.3);
+}
+
+.formGroup textarea {
+    resize: vertical;
+    min-height: 140px;
+    padding-top: 20px;
+}
+
+/* Character Counter */
+.charCount {
+    position: absolute;
+    bottom: 12px;
+    right: 18px;
+    font-size: 12px;
+    color: #ffd700;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Graffiti Submit Button */
+.submitBtn {
+    padding: 20px 45px;
+    background: #ffd700;
+    border: 2px solid #000000;
+    border-radius: 0;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'UrbanHeroes', headerFont, sans-serif;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-weight: 800;
+    box-shadow: 5px 5px 0 #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.btnGlow {
+    display: none;
+}
+
+.submitBtn:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffd700;
+    transform: translate(-2px, -2px);
+    box-shadow:
+        8px 8px 0 #ffd700,
+        0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.submitBtn:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 #ffd700;
+}
+
+/* Success Animation */
+.submitBtn.success {
+    background: #ffffff;
+    color: #000000;
+    border-color: #000000;
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 968px) {
+    .contactsWrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contactCards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contactsContainer {
+        padding: 100px 20px 40px;
+    }
+
+    .formContainer {
+        padding: 35px 25px;
+    }
+
+    .contactCard {
+        padding: 30px 25px;
+    }
+
+    .cardIcon {
+        font-size: 48px;
+    }
+
+    .contactCards {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contactsContainer {
+        padding: 90px 15px 30px;
+    }
+
+    .formContainer {
+        padding: 30px 20px;
+    }
+
+    .contactCard {
+        padding: 25px 20px;
+    }
+
+    .cardIcon {
+        font-size: 42px;
+    }
+}

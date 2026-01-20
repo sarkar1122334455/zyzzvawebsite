@@ -1,26 +1,165 @@
-@import "tailwindcss";
+/* --- CUSTOM LANDING PAGE STYLES --- */
+
+/* Ensure font path is correct relative to public folder or configured via next/font */
+@font-face {
+  font-family: headerFont;
+  /* Next.js public folder path assumption */
+  src: url("/font/header.otf");
+}
+
+/* Reset is likely handled by Tailwind or existing globals, but kept here just in case */
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+/* Ensure the body/html covers full screen for the loader */
+/* 1. UNCOMMENT THIS SECTION to remove the "sliver" gap */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  /* 2. CHANGE THIS FROM BLACK TO TRANSPARENT */
+  background: transparent;
+  font-family: headerFont, Arial, sans-serif;
+}
+
+@font-face {
+  font-family: 'GraffitiThree';
+  src: url("/font/graffiti3.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GraffitiFour';
+  src: url("/font/graffiti4.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GraffitiTwo';
+  src: url("/font/graffiti2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GraffitiOne';
+  src: url("/font/graffiti1.otf") format("opentype");
+  font-weight: normal;
+  font-style: auto;
+}
+
+@font-face {
+  font-family: 'GraffitiYouth';
+  src: url("/font/graffitiyouth.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-docallisme: 'Docallisme', headerFont, Arial, sans-serif;
+  --font-graffiti2: 'GraffitiTwo', headerFont, Arial, sans-serif;
+  --font-graffiti1: 'GraffitiOne', headerFont, Arial, sans-serif;
+  --font-graffiti3: 'GraffitiThree', headerFont, Arial, sans-serif;
+  --font-graffiti4: 'GraffitiFour', headerFont, Arial, sans-serif;
+  --font-graffiti-youth: 'GraffitiYouth', headerFont, Arial, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ... keep the rest of your CSS the same ... */
+
+/* Ensure the loader still has a background so it covers the loading video */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: black;
+  /* Keep this black! */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.logo-img {
+  width: 700px;
+  animation: pulse 1.5s infinite;
+}
+
+@media (min-width: 1024px) {
+  .logo-img {
+    width: 1400px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 768px) {
+  .logo-img {
+    width: 420px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.loading-text {
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.dots::after {
+  content: "";
+  animation: dots 3.5s infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+
+  33% {
+    content: ".";
+  }
+
+  66% {
+    content: "..";
+  }
+
+  100% {
+    content: "...";
+  }
+}
+
+/* Navbar styles moved to app/components/Navbar.module.css */
+
+/* Make sure videos cover the screen */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
