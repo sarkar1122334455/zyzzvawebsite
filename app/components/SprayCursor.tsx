@@ -94,7 +94,7 @@ export default function SprayCursor() {
                     // Random angle for spray pattern
                     const angle = Math.random() * Math.PI * 2;
                     const speed = CONFIG.minVelocity + Math.random() * (CONFIG.maxVelocity - CONFIG.minVelocity);
-                    
+
                     // Add some randomness to spawn position for spray effect
                     const spawnRadius = 5;
                     const spawnAngle = Math.random() * Math.PI * 2;
@@ -119,7 +119,7 @@ export default function SprayCursor() {
             // Update and draw particles
             for (let i = particles.current.length - 1; i >= 0; i--) {
                 const p = particles.current[i];
-                
+
                 // Apply physics
                 p.x += p.vx;
                 p.y += p.vy;
@@ -152,7 +152,7 @@ export default function SprayCursor() {
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fill();
             }
-            
+
             ctx.globalAlpha = 1;
 
             requestRef.current = requestAnimationFrame(updateParticles);
@@ -214,9 +214,9 @@ export default function SprayCursor() {
                 <img
                     src="/spraypaint.svg"
                     alt="spray paint cursor"
-                    style={{ 
-                        width: "100%", 
-                        height: "100%", 
+                    style={{
+                        width: "100%",
+                        height: "100%",
                         objectFit: "contain",
                         filter: "drop-shadow(0 0 4px rgba(0,0,0,0.3))"
                     }}
