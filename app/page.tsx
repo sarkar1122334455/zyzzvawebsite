@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useIntro } from "./context/IntroContext";
+import HomeInfo from "./components/HomeInfo";
 // If you want to use Next.js Image optimization, uncomment the import below
 // and replace <img> with <Image /> (requires width/height properties).
 // import Image from "next/image";
@@ -132,6 +133,9 @@ export default function Home() {
           <source src="/VN20251208_012531.mp4" type="video/mp4" />
         </video>
       </div>
+
+      {/* ✅ SCROLLABLE CONTENT SECTION */}
+      {!loading && <HomeInfo />}
     </main>
   );
 }

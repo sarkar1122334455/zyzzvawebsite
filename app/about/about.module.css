@@ -241,6 +241,7 @@
     height: auto;
     margin: 0 auto 40px;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+
 }
 
 @keyframes shimmer {
@@ -262,7 +263,7 @@
 
 .storyBox {
     padding: 0;
-    margin: 40px 20px;
+    margin: 10px 20px;
     width: 100%;
     background: transparent;
     border-radius: 0;
@@ -327,7 +328,7 @@
     text-align: center;
 
     /* ✅ Font Updated: Urban Heroes */
-    font-family: 'UrbanHeroes', var(--font-graffiti), cursive;
+    font-family: Verdana;
 }
 
 .storyBox p {

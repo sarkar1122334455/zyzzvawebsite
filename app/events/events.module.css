@@ -8,6 +8,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'graffitione';
+    src: url('/font/graffiti1.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ProtestRevolution';
+    src: url('/font/ProtestRevolution-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* CSS Variables replaced with direct values */
 /* Primary: #ffd700 */
 /* Secondary: #ffffff */
@@ -19,8 +33,10 @@
     width: 100%;
     min-height: 100vh;
     background: url('/desktop1.png') center/cover no-repeat scroll;
+
     /* Opaque scroll background */
     font-family: 'GraffitiOne', headerFont, Arial, sans-serif;
+
     position: relative;
     overflow-x: hidden;
     perspective: 2000px;
@@ -68,6 +84,7 @@
     position: relative;
     z-index: 1;
     text-transform: uppercase;
+    font-family: 'graffitione';
 }
 
 .pageSubtitle {

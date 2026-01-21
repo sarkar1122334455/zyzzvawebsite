@@ -16,10 +16,12 @@ export default function SponsorPage() {
 
     // Sponsor Data with exact details from requirements
     const titleSponsor = {
+
         name: "NPCI",
         fullName: "National Payments Corporation of India",
         tier: "Title Sponsor",
         logoUrl: "/sponsors/npci.png", // Add logos to public/sponsors/
+
     };
 
     const coTitleSponsor = {
