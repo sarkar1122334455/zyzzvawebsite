@@ -33,8 +33,10 @@
     width: 100%;
     min-height: 100vh;
     background: url('/desktop1.png') center/cover no-repeat scroll;
-    /* Scrolling background for parallax effect */
-    font-family: 'graffitione';
+
+    /* Opaque scroll background */
+    font-family: 'GraffitiOne', headerFont, Arial, sans-serif;
+
     position: relative;
     overflow-x: hidden;
     perspective: 2000px;

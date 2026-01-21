@@ -1,243 +1,131 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import OrnateFrame from "../components/OrnateFrame";
 import styles from "./glimpses.module.css";
 
-/**
- * Image data structure
- */
-const imageData = [
-    { id: 0, src: "/event_night.png", title: "Event Night", description: "Memorable moments from our events" },
-    { id: 1, src: "/hackathon.png", title: "Hackathon", description: "Innovation and coding challenges" },
-    { id: 2, src: "/cultural_fest.png", title: "Cultural Fest", description: "Celebrating diverse cultures" },
-    { id: 3, src: "/event_night.png", title: "Workshop", description: "Learning and skill development" },
-    { id: 4, src: "/hackathon.png", title: "Tech Talk", description: "Knowledge sharing sessions" },
-    { id: 5, src: "/cultural_fest.png", title: "Performances", description: "Music, dance, and drama" },
-    { id: 6, src: "/event_night.png", title: "Competitions", description: "Showcasing talent and creativity" },
-    { id: 7, src: "/hackathon.png", title: "Guest Artists", description: "Celebrity performances" },
-    { id: 8, src: "/cultural_fest.png", title: "Food Fest", description: "Culinary delights and treats" },
-    { id: 9, src: "/event_night.png", title: "Art Exhibition", description: "Creative masterpieces on display" },
-    { id: 10, src: "/hackathon.png", title: "Closing Ceremony", description: "Grand finale celebration" }
+// Gallery data with categories
+const galleryImages = [
+    { id: 1, src: "/event_night.png", title: "Pro Nite Magic", category: "Pro Nites" },
+    { id: 2, src: "/hackathon.png", title: "Dance Fusion", category: "Natyanjali" },
+    { id: 3, src: "/cultural_fest.png", title: "Fashion Extravaganza", category: "FashP" },
+    { id: 4, src: "/event_night.png", title: "Battle of Bands", category: "Sea Rock" },
+    { id: 5, src: "/hackathon.png", title: "Carnival Games", category: "Informals" },
+    { id: 6, src: "/cultural_fest.png", title: "Electric Nights", category: "Pro Nites" },
+    { id: 7, src: "/event_night.png", title: "Classical Elegance", category: "Natyanjali" },
+    { id: 8, src: "/hackathon.png", title: "Runway Dreams", category: "FashP" },
+    { id: 9, src: "/cultural_fest.png", title: "Rock Revolution", category: "Sea Rock" },
 ];
 
-export default function GlimpsesPage() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-    const [galleryOpen, setGalleryOpen] = useState(false);
-    const [activeImage, setActiveImage] = useState(0);
-    const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
-    const totalImages = imageData.length;
+export default function GalleryPage() {
+    const [loading, setLoading] = useState(true);
+    const { scrollYProgress } = useScroll();
 
-    // Calculate positions
-    const getPrevIndex = useCallback(() => {
-        return (currentIndex - 1 + totalImages) % totalImages;
-    }, [currentIndex, totalImages]);
+    // Parallax transforms for different columns
+    const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+    const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+    const y3 = useTransform(scrollYProgress, [0, 1], [0, -75]);
 
-    const getNextIndex = useCallback(() => {
-        return (currentIndex + 1) % totalImages;
-    }, [currentIndex, totalImages]);
-
-    // Go to specific slide
-    const goToSlide = useCallback((index: number) => {
-        if (index === currentIndex) return;
-        setCurrentIndex(index);
-    }, [currentIndex]);
-
-    // Gallery navigation handlers
-    const handlePrev = useCallback(() => {
-        setActiveImage((prev) => Math.max(0, prev - 1));
-    }, []);
-
-    const handleNext = useCallback(() => {
-        setActiveImage((prev) => Math.min(imageData.length - 1, prev + 1));
-    }, []);
-
-    const handleThumbnailClick = useCallback((index: number) => {
-        setActiveImage(index);
-    }, []);
-
-    // Auto-play functionality
-    const startAutoPlay = useCallback(() => {
-        if (autoPlayRef.current) {
-            clearInterval(autoPlayRef.current);
-        }
-        autoPlayRef.current = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % totalImages);
-        }, 4000);
-    }, [totalImages]);
-
-    const stopAutoPlay = useCallback(() => {
-        if (autoPlayRef.current) {
-            clearInterval(autoPlayRef.current);
-            autoPlayRef.current = null;
-        }
-    }, []);
-
-    // Initialize auto-play
     useEffect(() => {
-        startAutoPlay();
-        return () => {
-            if (autoPlayRef.current) {
-                clearInterval(autoPlayRef.current);
-            }
-        };
-    }, [startAutoPlay]);
-
-    // Mouse move effect
-    const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        const x = (e.clientX / window.innerWidth) * 100;
-        const y = (e.clientY / window.innerHeight) * 100;
-        setMousePos({ x, y });
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+        return () => clearTimeout(timer);
     }, []);
 
-    // Get class name for each image
-    const getImageClass = (index: number) => {
-        if (index === currentIndex) return styles.center;
-        if (index === getPrevIndex()) return styles.left;
-        if (index === getNextIndex()) return styles.right;
-        return styles.hidden;
-    };
+    // Split images into columns for parallax
+    const column1 = galleryImages.filter((_, i) => i % 3 === 0);
+    const column2 = galleryImages.filter((_, i) => i % 3 === 1);
+    const column3 = galleryImages.filter((_, i) => i % 3 === 2);
 
     return (
-        <div
-            className={styles.carouselContainer}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={stopAutoPlay}
-            onMouseLeave={startAutoPlay}
-        >
-            <div className={styles.reflectionFloor}></div>
-
-            <h1 className={styles.pageTitle}>Glimpses</h1>
-            <p className={styles.pageSubtitle}>A sneak peek into our journey</p>
-
-            <div className={styles.carouselWrapper}>
-                {imageData.map((image, index) => (
-                    <div
-                        key={image.id}
-                        className={`${styles.imageContainer} ${getImageClass(index)}`}
-                        data-index={index}
-                    >
-                        <img src={image.src} alt={image.title} />
-                        <div className={styles.imageTitle}>{image.title}</div>
-                    </div>
-                ))}
-            </div>
-
-            <div className={styles.reflectionFloor}></div>
-
-            <div className={styles.navigation}>
-                {imageData.map((_, index) => (
-                    <div
-                        key={index}
-                        className={`${styles.dot} ${index === currentIndex ? styles.active : ""}`}
-                        onClick={() => goToSlide(index)}
-                        data-slide={index}
-                    />
-                ))}
-            </div>
-
-            {/* View More Button */}
-            <button
-                className={styles.viewMoreBtn}
-                onClick={() => setGalleryOpen(true)}
-            >
-                View All Glimpses
-            </button>
-
-            {galleryOpen && (
-                <div
-                    className={styles.galleryOverlay}
-                    onClick={() => setGalleryOpen(false)}
-                >
-                    <div className={styles.popupWrapper} onClick={(e) => e.stopPropagation()}>
-
-                        <div className={styles.popupHeader}>
-                            <h2 className={styles.galleryTitle}>All Glimpses</h2>
-                            <button
-                                className={styles.closeBtn}
-                                onClick={() => setGalleryOpen(false)}
-                                aria-label="Close gallery"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                                    <path d="M18 6L6 18M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div
-                            className={styles.galleryContainer}
-                        >
-                            <div className={styles.sliderGallery}>
-                                {/* Large Images */}
-                                <div className={styles.bigImages}>
-                                    {imageData.map((image, index) => (
-                                        <div
-                                            key={image.id}
-                                            className={styles.bigImage}
-                                            data-active={index === activeImage ? 'true' : undefined}
-                                        >
-                                            <img src={image.src} alt={image.title} />
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Bottom Section: Thumbnails + Content */}
-                                <div className={styles.galleryBottom}>
-                                    {/* Thumbnails */}
-                                    <div className={styles.thumbnails}>
-                                        {imageData.map((image, index) => (
-                                            <div
-                                                key={image.id}
-                                                className={styles.thumbnail}
-                                                data-active={index === activeImage ? 'true' : undefined}
-                                                onClick={() => handleThumbnailClick(index)}
-                                            >
-                                                <img src={image.src} alt={image.title} />
-                                                <div className={styles.cuticle}></div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Content Panel */}
-                                    <div className={styles.contentPanel}>
-                                        {/* Nav Buttons */}
-                                        <nav className={styles.navButtons}>
-                                            <button
-                                                onClick={handlePrev}
-                                                disabled={activeImage === 0}
-                                                title="Previous"
-                                            >
-                                                &lt;
-                                            </button>
-                                            <button
-                                                onClick={handleNext}
-                                                disabled={activeImage === imageData.length - 1}
-                                                title="Next"
-                                            >
-                                                &gt;
-                                            </button>
-                                        </nav>
-
-                                        {/* Articles */}
-                                        <div className={styles.articles}>
-                                            {imageData.map((image, index) => (
-                                                <article
-                                                    key={image.id}
-                                                    className={styles.article}
-                                                    data-active={index === activeImage ? 'true' : undefined}
-                                                >
-                                                    <h2>{image.title}</h2>
-                                                    <p>{image.description}</p>
-                                                </article>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <>
+            {/* LOADER */}
+            {loading && (
+                <div id="loader">
+                    <img src="/logo.png" className="logo-img" alt="Logo" />
+                    <div className="loading-text">
+                        Loading<span className="dots"></span>
                     </div>
                 </div>
             )}
-        </div>
+
+            <div className={styles.galleryPageWrapper}>
+                {/* Hero Section */}
+                <div className={styles.galleryHero}>
+                    <motion.h1
+                        className={styles.galleryMainTitle}
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className={styles.carnivalText}>GALLERY</span>
+                    </motion.h1>
+                    <motion.p
+                        className={styles.gallerySubtitle}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                    >
+                        Masquerade of Memories
+                    </motion.p>
+                </div>
+
+                {/* Masonry Grid with Parallax */}
+                <div className={styles.masonryContainer}>
+                    {/* Column 1 */}
+                    <motion.div className={styles.masonryColumn} style={{ y: y1 }}>
+                        {column1.map((image, index) => (
+                            <OrnateFrame
+                                key={image.id}
+                                imageSrc={image.src}
+                                title={image.title}
+                                category={image.category}
+                                index={index}
+                            />
+                        ))}
+                    </motion.div>
+
+                    {/* Column 2 */}
+                    <motion.div className={styles.masonryColumn} style={{ y: y2 }}>
+                        {column2.map((image, index) => (
+                            <OrnateFrame
+                                key={image.id}
+                                imageSrc={image.src}
+                                title={image.title}
+                                category={image.category}
+                                index={index}
+                            />
+                        ))}
+                    </motion.div>
+
+                    {/* Column 3 */}
+                    <motion.div className={styles.masonryColumn} style={{ y: y3 }}>
+                        {column3.map((image, index) => (
+                            <OrnateFrame
+                                key={image.id}
+                                imageSrc={image.src}
+                                title={image.title}
+                                category={image.category}
+                                index={index}
+                            />
+                        ))}
+                    </motion.div>
+                </div>
+
+                {/* Floating Particles */}
+                <div className={styles.floatingParticles}>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                </div>
+            </div>
+        </>
     );
 }
