@@ -1,47 +1,53 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import SponsorCard from "../components/SponsorCard";
 import styles from "./sponsor.module.css";
-// import Navbar from "@/components/Navbar"; // Uncomment if you have a navbar component
 
 export default function SponsorPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate loading time
         const timer = setTimeout(() => {
             setLoading(false);
         }, 1000);
         return () => clearTimeout(timer);
     }, []);
 
-    // --- Data for Sponsors ---
+    // Sponsor Data with exact details from requirements
     const titleSponsor = {
-        name: "Premier Company",
-        desc: "Proudly presenting Euphonious × Zyzzva '26",
-        tagline: "Title Sponsor",
-        icon: "👑"
+        name: "NPCI",
+        fullName: "National Payments Corporation of India",
+        tier: "Title Sponsor",
+        logoUrl: "/sponsors/npci.png", // Add logos to public/sponsors/
     };
 
-    const partners = [
-        { name: "Partner A", desc: "Strategic Technology Partner", icon: "🤝" },
-        { name: "Partner B", desc: "Innovation & Development Partner", icon: "🤝" },
-        { name: "Partner C", desc: "Community Partner", icon: "🤝" },
-        { name: "Partner D", desc: "Media & Content Partner", icon: "🤝" },
+    const coTitleSponsor = {
+        name: "HCL Tech",
+        tier: "Co-Title Sponsor",
+        logoUrl: "/sponsors/hcl.png",
+    };
+
+    const associateTitleSponsor = {
+        name: "Hero MotoCorp",
+        tier: "Associate Title Sponsor",
+        logoUrl: "/sponsors/hero.png",
+    };
+
+    const upskillingPartners = [
+        { name: "Skill Ladders", tier: "Upskilling Partner" },
+        { name: "IALM", tier: "Upskilling Partner" },
+        { name: "Experiment Labs", tier: "EdTech Partner" },
+        { name: "Tripple One Solutions", tier: "EdTech Partner" },
+        { name: "Elearnmarkets", tier: "EdTech Partner" },
     ];
 
-    const goldSponsors = [
-        { name: "Company C", desc: "Quality Solutions", icon: "🥇" },
-        { name: "Company D", desc: "Creative Excellence", icon: "🥇" },
-        { name: "Company E", desc: "Innovation Hub", icon: "🥇" },
-    ];
-
-    const silverSponsors = [
-        { name: "Company F", desc: "Tech Solutions", icon: "🥈" },
-        { name: "Company G", desc: "Digital Services", icon: "🥈" },
-        { name: "Company H", desc: "Creative Agency", icon: "🥈" },
-        { name: "Company I", desc: "Media Partners", icon: "🥈" },
+    const otherPartners = [
+        { name: "Logistics Partner", tier: "Logistics", icon: "🚚" },
+        { name: "Gadgets Partner", tier: "Gadgets", icon: "📱" },
+        { name: "Sporting Partner", tier: "Sporting", icon: "⚽" },
+        { name: "Food & Beverage Partner", tier: "Food & Beverage", icon: "🍔" },
+        { name: "Digital Media Partner", tier: "Digital Media", icon: "📺" },
     ];
 
     return (
@@ -49,7 +55,6 @@ export default function SponsorPage() {
             {/* LOADER */}
             {loading && (
                 <div id="loader">
-                    {/* Ensure logo.png is in your public folder */}
                     <img src="/logo.png" className="logo-img" alt="Logo" />
                     <div className="loading-text">
                         Loading<span className="dots"></span>
@@ -57,84 +62,123 @@ export default function SponsorPage() {
                 </div>
             )}
 
-            {/* NAV BAR: If you don't have a global layout navbar, you can import it here */}
-            {/* <Navbar /> */}
-
             <div className={styles.pageWrapper}>
                 <div className={styles.sponsorContainer}>
-                    <h1 className={styles.pageTitle}>Our Sponsors</h1>
-                    <p className={styles.pageSubtitle}>Partners who make our festival possible</p>
-
-                    <div className={styles.sponsorTiers}>
-
-                        {/* TITLE SPONSOR SECTION */}
-                        <div className={styles.titleSponsorSection}>
-                            <div className={styles.titleSponsorBadge}>{titleSponsor.tagline}</div>
-                            <div className={styles.titleSponsorCard}>
-                                {/* Content removed as requested, background image used */}
-                            </div>
-                        </div>
-
-                        {/* PARTNERS SECTION */}
-                        <div className={styles.partnersSection}>
-                            <h2 className={styles.partnersTitle}>Our Partners</h2>
-                            <p className={styles.partnersSubtitle}>
-                                Collaborating with industry leaders to create exceptional experiences
-                            </p>
-                            <div className={styles.partnersGrid}>
-                                {partners.map((partner, index) => (
-                                    <div key={index} className={styles.partnerCard}>
-                                        <div className={styles.partnerLogo}>{partner.icon}</div>
-                                        <h3>{partner.name}</h3>
-                                        <p>{partner.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* GOLD TIER */}
-                        <div className={styles.tierSection}>
-                            <h2 className={`${styles.tierTitle} ${styles.goldTitle}`}>Gold Sponsors</h2>
-                            <div className={styles.sponsorGrid}>
-                                {goldSponsors.map((sponsor, index) => (
-                                    <div key={index} className={`${styles.sponsorCard} ${styles.goldCard}`}>
-                                        <div className={styles.sponsorLogo}>{sponsor.icon}</div>
-                                        <h3>{sponsor.name}</h3>
-                                        <p>{sponsor.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* SILVER TIER */}
-                        <div className={styles.tierSection}>
-                            <h2 className={`${styles.tierTitle} ${styles.silverTitle}`}>Silver Sponsors</h2>
-                            <div className={styles.sponsorGrid}>
-                                {silverSponsors.map((sponsor, index) => (
-                                    <div key={index} className={`${styles.sponsorCard} ${styles.silverCard}`}>
-                                        <div className={styles.sponsorLogo}>{sponsor.icon}</div>
-                                        <h3>{sponsor.name}</h3>
-                                        <p>{sponsor.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
+                    {/* HERO SECTION */}
+                    <div className={styles.heroSection}>
+                        <h1 className={styles.pageTitle}>
+                            <span className={styles.glitchText}>Our Sponsors</span>
+                        </h1>
+                        <p className={styles.pageSubtitle}>
+                            Partners powering the ultimate graffiti fest
+                        </p>
                     </div>
+
+                    {/* TITLE SPONSOR - NPCI */}
+                    <section className={styles.titleSponsorSection}>
+                        <div className={styles.sectionBadge}>👑 Title Sponsor</div>
+                        <div className={styles.titleSponsorWrapper}>
+                            <SponsorCard
+                                name={titleSponsor.name}
+                                tier={titleSponsor.tier}
+                                logoUrl={titleSponsor.logoUrl}
+                                description={titleSponsor.fullName}
+                                delay={0.2}
+                            />
+                        </div>
+                    </section>
+
+                    {/* CO-TITLE & ASSOCIATE SPONSORS */}
+                    <section className={styles.coTitleSection}>
+                        <div className={styles.sectionBadge}>🥇 Premium Sponsors</div>
+                        <div className={styles.premiumSponsorsGrid}>
+                            <SponsorCard
+                                name={coTitleSponsor.name}
+                                tier={coTitleSponsor.tier}
+                                logoUrl={coTitleSponsor.logoUrl}
+                                delay={0.3}
+                            />
+                            <SponsorCard
+                                name={associateTitleSponsor.name}
+                                tier={associateTitleSponsor.tier}
+                                logoUrl={associateTitleSponsor.logoUrl}
+                                delay={0.4}
+                            />
+                        </div>
+                    </section>
+
+                    {/* UPSKILLING & EDTECH PARTNERS */}
+                    <section className={styles.partnersSection}>
+                        <h2 className={styles.sectionTitle}>
+                            <span className={styles.neonText}>Upskilling & EdTech Partners</span>
+                        </h2>
+                        <div className={styles.partnersGrid}>
+                            {upskillingPartners.map((partner, index) => (
+                                <SponsorCard
+                                    key={index}
+                                    name={partner.name}
+                                    tier={partner.tier}
+                                    delay={0.1 * index}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* OTHER PARTNERS GRID */}
+                    <section className={styles.partnersSection}>
+                        <h2 className={styles.sectionTitle}>
+                            <span className={styles.neonText}>Our Partners</span>
+                        </h2>
+                        <div className={styles.partnersGrid}>
+                            {otherPartners.map((partner, index) => (
+                                <SponsorCard
+                                    key={index}
+                                    name={partner.name}
+                                    tier={partner.tier}
+                                    delay={0.1 * index}
+                                />
+                            ))}
+                        </div>
+                    </section>
 
                     {/* BECOME A SPONSOR CTA */}
                     <div className={styles.becomeSponsor}>
                         <div className={styles.sponsorCta}>
-                            <h2>Become a Sponsor</h2>
+                            <h2>Paint Your Brand Here</h2>
                             <p>
-                                Join us in creating an unforgettable festival experience. Partner
-                                with us and reach thousands of students and enthusiasts.
+                                Join our crew and tag along with the biggest graffiti fest.
+                                Reach thousands of students and artists.
                             </p>
-                            <Link href="/contacts" className={styles.ctaButton}>
-                                Get In Touch
-                            </Link>
+                            <a href="/contacts" className={styles.ctaButton}>
+                                <span>Get In Touch</span>
+                                <span className={styles.sprayEffect}>→</span>
+                            </a>
                         </div>
                     </div>
+                </div>
+
+                {/* FLOATING PARTICLES BACKGROUND */}
+                <div className={styles.floatingParticles}>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
+                    <div className={styles.particle}></div>
                 </div>
             </div>
         </>

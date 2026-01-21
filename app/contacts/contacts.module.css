@@ -66,8 +66,8 @@
 
 /* --- Wrapper & Grid --- */
 .contactsWrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
@@ -79,6 +79,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* --- Graffiti Contact Cards --- */
@@ -223,6 +225,9 @@
 /* --- Graffiti Form Section --- */
 .contactFormWrapper {
     position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
     animation: slideInRight 0.8s ease 0.3s backwards;
 }
 
@@ -416,15 +421,12 @@
 }
 
 /* --- Media Queries --- */
-@media (max-width: 968px) {
-    .contactsWrapper {
-        grid-template-columns: 1fr;
-    }
-
+@media (max-width: 768px) {
     .contactCards {
         grid-template-columns: 1fr;
     }
 }
+
 
 @media (max-width: 768px) {
     .contactsContainer {

@@ -18,8 +18,8 @@
 .pageWrapper {
     width: 100%;
     min-height: 100vh;
-    background: url('/desktop1.png') center/cover no-repeat fixed;
-    /* Opaque fixed background */
+    background: url('/desktop1.png') center/cover no-repeat scroll;
+    /* Opaque scroll background */
     font-family: 'GraffitiOne', headerFont, Arial, sans-serif;
     position: relative;
     overflow-x: hidden;
