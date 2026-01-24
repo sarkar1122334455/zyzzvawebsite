@@ -72,19 +72,23 @@
 
 /* --- Typography --- */
 /* --- Typography --- */
-.pageTitle {
-    font-size: clamp(48px, 6vw, 80px);
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff;
-    /* Solid white */
-    letter-spacing: 4px;
-    text-shadow: 2px 6px 6px #000000;
-    /* Hard shadow */
+/* --- Title Image --- */
+.titleContainer {
     position: relative;
     z-index: 1;
-    text-transform: uppercase;
-    font-family: 'graffitione';
+    margin-bottom: -4.5rem;
+    margin-top: -4rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.eventsTitleImage {
+    max-width: 400px;
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 6px 6px #000000);
 }
 
 .pageSubtitle {
@@ -494,8 +498,8 @@
         height: 450px;
     }
 
-    .pageTitle {
-        font-size: clamp(40px, 5vw, 60px);
+    .eventsTitleImage {
+        max-width: 350px;
     }
 }
 
@@ -514,8 +518,8 @@
         padding: 100px 20px 40px;
     }
 
-    .pageTitle {
-        font-size: clamp(36px, 6vw, 48px);
+    .eventsTitleImage {
+        max-width: 300px;
     }
 
     .pageSubtitle {
@@ -568,9 +572,8 @@
         padding: 90px 15px 30px;
     }
 
-    .pageTitle {
-        font-size: clamp(32px, 7vw, 40px);
-        letter-spacing: 2px;
+    .eventsTitleImage {
+        max-width: 250px;
     }
 
     .pageSubtitle {

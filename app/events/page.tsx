@@ -154,7 +154,6 @@ export default function EventsPage() {
     const [touchStartX, setTouchStartX] = useState(0);
     const [touchEndX, setTouchEndX] = useState(0);
     const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
-    const [scrollY, setScrollY] = useState(0);
     const autoplayRef = useRef<NodeJS.Timeout | null>(null);
     const popupRef = useRef<HTMLDivElement>(null);
     const eventsCarouselRef = useRef<HTMLDivElement>(null);
@@ -168,14 +167,7 @@ export default function EventsPage() {
     }, []);
 
     // Parallax scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     // Start autoplay on mount
     useEffect(() => {
@@ -232,7 +224,7 @@ export default function EventsPage() {
         if (autoplayRef.current) clearInterval(autoplayRef.current);
         autoplayRef.current = setInterval(() => {
             setCurrentIndex((current) => (current + 1) % eventsData.length);
-        }, 3000);
+        }, 2000);
     }, []);
 
     const stopAutoplay = useCallback(() => {
@@ -334,11 +326,13 @@ export default function EventsPage() {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
                 style={{
-                    backgroundPositionY: `${scrollY * 0.5}px`
+                    // Background scrolling is handled by CSS now (static/standard)
                 }}
             >
                 <div className={styles.eventsContainer}>
-                    <h1 className={styles.pageTitle}>Events</h1>
+                    <div className={styles.titleContainer}>
+                        <img src="/events.png" alt="Events" className={styles.eventsTitleImage} />
+                    </div>
                     <p className={styles.pageSubtitle}>
                         Experience the magic of Euphonious x Zyzzva '26
                     </p>
