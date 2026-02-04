@@ -16,7 +16,8 @@
     position: relative;
     overflow-x: hidden;
     text-transform: uppercase;
-    background: url('/desktop1.png') center/cover no-repeat;
+    background: url('/desktop1.png') center/cover no-repeat scroll;
+    background-attachment: scroll;
     /* Opaque Background */
 }
 
@@ -51,6 +52,20 @@
     position: relative;
     z-index: 1;
     font-family: 'GraffitiOne', 'UrbanHeroes', sans-serif;
+}
+
+/* Styling for image in pageTitle */
+.pageTitle img,
+img.pageTitle {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    margin-top: -20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pageSubtitle {
@@ -422,15 +437,13 @@
 
 /* --- Media Queries --- */
 @media (max-width: 768px) {
-    .contactCards {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-@media (max-width: 768px) {
     .contactsContainer {
         padding: 100px 20px 40px;
+    }
+
+    .contactCards {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .formContainer {
@@ -444,15 +457,22 @@
     .cardIcon {
         font-size: 48px;
     }
-
-    .contactCards {
-        gap: 20px;
-    }
 }
 
 @media (max-width: 480px) {
     .contactsContainer {
         padding: 90px 15px 30px;
+    }
+
+    .pageTitle img,
+    img.pageTitle {
+        max-width: 300px;
+    }
+
+    .contactCards {
+        gap: 20px;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
     .formContainer {
@@ -465,5 +485,79 @@
 
     .cardIcon {
         font-size: 42px;
+    }
+
+    .contactCard h3 {
+        font-size: 20px;
+    }
+
+    .contactCard p {
+        font-size: 14px;
+    }
+
+    .socialLinks {
+        gap: 10px;
+    }
+
+    .submitBtn {
+        padding: 18px 40px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .contactsContainer {
+        padding: 85px 12px 25px;
+    }
+
+    .pageTitle img,
+    img.pageTitle {
+        max-width: 260px;
+    }
+
+    .contactCards {
+        gap: 18px;
+        max-width: 340px;
+    }
+
+    .formContainer {
+        padding: 25px 15px;
+    }
+
+    .contactCard {
+        padding: 22px 18px;
+    }
+
+    .cardIcon {
+        font-size: 38px;
+    }
+
+    .contactCard h3 {
+        font-size: 18px;
+    }
+
+    .contactCard p {
+        font-size: 13px;
+    }
+
+    .contactLink {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+    .socialLink {
+        padding: 9px 16px;
+        font-size: 12px;
+    }
+
+    .submitBtn {
+        padding: 16px 35px;
+        font-size: 15px;
+    }
+
+    .formGroup input,
+    .formGroup textarea {
+        padding: 16px 20px;
+        font-size: 15px;
     }
 }

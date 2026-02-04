@@ -27,7 +27,8 @@
     width: 100%;
     min-height: 100vh;
     /* Ensure this image is in public/assets/ */
-    background: url("/desktop1.png") center/100% auto no-repeat scroll;
+    background: url("/desktop1.png") center center / cover no-repeat scroll;
+    background-attachment: scroll;
 
     /* ✅ Font Updated: Space Grotesk */
     /* ✅ Font Updated: GraffitiOne */
@@ -43,7 +44,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: url("/desktop1.png") center/100% auto no-repeat scroll;
+    background: url("/desktop1.png") center center / cover no-repeat;
+    background-attachment: scroll;
     filter: brightness(1);
     z-index: 0;
 }
@@ -423,7 +425,7 @@
 
 @media (max-width: 768px) {
     .sliderBox {
-        height: 300px;
+        height: 350px;
         border-radius: 16px;
     }
 
@@ -442,11 +444,21 @@
     }
 
     .storyBox {
-        padding: 25px;
+        padding: 25px 20px;
+    }
+
+    .boxContent {
+        padding: 30px 20px;
     }
 
     .title {
         font-size: 32px;
+    }
+
+    .logoImage {
+        max-width: 400px;
+        margin-bottom: -3rem;
+        margin-top: -2rem;
     }
 }
 
@@ -456,13 +468,17 @@
     }
 
     .sliderBox {
-        height: 250px;
+        height: 280px;
         border-radius: 12px;
     }
 
     .storyBox {
         padding: 20px 15px;
         margin: 10px 0;
+    }
+
+    .boxContent {
+        padding: 25px 15px;
     }
 
     .title {
@@ -476,19 +492,68 @@
         margin-bottom: 20px;
     }
 
+    .logoImage {
+        max-width: 300px;
+        margin-bottom: -2.5rem;
+        margin-top: -1.5rem;
+    }
+
     .storyBox h2 {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .storyBox p {
         font-size: 14px;
-        text-align: left;
-        /* Better for small screens */
+        text-align: center;
+        line-height: 1.6;
     }
 
     .arrow {
         width: 40px;
         height: 40px;
         font-size: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .aboutContainer {
+        padding: 55px 12px 20px;
+    }
+
+    .sliderBox {
+        height: 240px;
+        border-radius: 10px;
+    }
+
+    .storyBox {
+        padding: 18px 12px;
+        margin: 8px 0;
+    }
+
+    .boxContent {
+        padding: 20px 12px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .logoImage {
+        max-width: 260px;
+        margin-bottom: -2rem;
+    }
+
+    .storyBox h2 {
+        font-size: 18px;
+    }
+
+    .storyBox p {
+        font-size: 13px;
+    }
+
+    .arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
     }
 }

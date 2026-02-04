@@ -527,7 +527,9 @@
         margin-bottom: 40px;
     }
 
-
+    .popupContent {
+        padding: 2rem 1.5rem;
+    }
 
     .controls {
         gap: 1rem;
@@ -559,13 +561,13 @@
 
 @media (max-width: 480px) {
     .eventCard {
-        width: 260px;
-        height: 360px;
-        margin-left: -130px;
+        width: 280px;
+        height: 370px;
+        margin-left: -140px;
     }
 
     .carouselContainer {
-        height: 410px;
+        height: 420px;
     }
 
     .eventsContainer {
@@ -580,9 +582,14 @@
         font-size: clamp(14px, 4vw, 18px);
     }
 
+    .popupContent {
+        padding: 1.5rem 1.2rem;
+    }
+
     .controlBtn {
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
+        /* Better touch target */
     }
 
     .controlBtn svg {
@@ -595,12 +602,54 @@
     }
 
     .eventContent {
-        padding: 1.5rem;
+        padding: 1.2rem;
+    }
+
+    .eventTitle {
+        font-size: 20px;
     }
 
     .dot {
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
+        /* Better touch target */
+    }
+}
+
+@media (max-width: 360px) {
+    .eventCard {
+        width: 240px;
+        height: 340px;
+        margin-left: -120px;
+    }
+
+    .carouselContainer {
+        height: 390px;
+    }
+
+    .eventsContainer {
+        padding: 85px 12px 25px;
+    }
+
+    .eventsTitleImage {
+        max-width: 220px;
+    }
+
+    .popupContent {
+        padding: 1.2rem 1rem;
+    }
+
+    .controlBtn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .eventContent {
+        padding: 1rem;
+    }
+
+    .eventTitle {
+        font-size: 18px;
     }
 }
 

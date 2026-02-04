@@ -361,6 +361,44 @@
     }
 }
 
+@media (max-width: 360px) {
+    .titleContainer {
+        margin-top: 4.5rem;
+    }
+
+    .pageTitleImage {
+        max-width: 280px;
+    }
+
+    .carouselWrapper {
+        width: 98vw;
+        height: 320px;
+    }
+
+    .imageContainer {
+        width: 200px;
+        height: 150px;
+    }
+
+    .imageContainer.left {
+        transform: translateX(-120px) rotateY(25deg) scale(0.65);
+    }
+
+    .imageContainer.right {
+        transform: translateX(120px) rotateY(-25deg) scale(0.65);
+    }
+
+    .imageTitle {
+        font-size: 12px;
+        bottom: 10px;
+    }
+
+    .dot {
+        width: 9px;
+        height: 9px;
+    }
+}
+
 /* Entrance Animation */
 @keyframes fadeIn {
     from {
@@ -886,6 +924,10 @@
         letter-spacing: 1px;
     }
 
+    .popupWrapper {
+        width: 95%;
+    }
+
     .galleryContainer {
         padding: 50px 15px 15px;
     }
@@ -930,5 +972,60 @@
     .article p {
         font-size: 0.75rem;
         line-height: 1.5;
+    }
+}
+
+@media (max-width: 360px) {
+    .viewMoreBtn {
+        bottom: 50px;
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+
+    .popupWrapper {
+        width: 98%;
+    }
+
+    .galleryContainer {
+        padding: 40px 10px 10px;
+    }
+
+    .galleryTitle {
+        font-size: 20px;
+    }
+
+    .closeBtn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .closeBtn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .thumbnails {
+        padding: 0.4rem;
+    }
+
+    .thumbnail img {
+        height: 45px;
+    }
+
+    .article {
+        padding: 0.8rem;
+    }
+
+    .article h2 {
+        font-size: 0.9rem;
+    }
+
+    .article p {
+        font-size: 0.7rem;
+    }
+
+    .navButtons button {
+        font-size: 16px;
+        width: 1.8em;
     }
 }

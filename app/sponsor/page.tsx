@@ -68,9 +68,7 @@ export default function SponsorPage() {
                 <div className={styles.sponsorContainer}>
                     {/* HERO SECTION */}
                     <div className={styles.heroSection}>
-                        <h1 className={styles.pageTitle}>
-                            <span className={styles.glitchText}>Our Sponsors</span>
-                        </h1>
+                        <img src="/sponsors.png" alt="Our Sponsors" className={styles.pageTitle} />
                         <p className={styles.pageSubtitle}>
                             Partners powering the ultimate graffiti fest
                         </p>

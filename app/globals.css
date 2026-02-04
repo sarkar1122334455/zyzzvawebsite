@@ -107,6 +107,18 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .logo-img {
+    width: 320px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-img {
+    width: 280px;
+  }
+}
+
 @keyframes pulse {
   0% {
     opacity: 0.4;

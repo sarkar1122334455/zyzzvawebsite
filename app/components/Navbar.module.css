@@ -156,46 +156,50 @@
 }
 
 /* Positioning Items manually for "Sticker Bomb" look or organized chaos */
-/* Top */
-.orbitItem:nth-child(1) {
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0) rotate(-5deg);
-}
+/* Only apply these positions on desktop/tablet, not mobile */
+@media (min-width: 769px) {
 
-/* Top Right */
-.orbitItem:nth-child(2) {
-    top: 25%;
-    right: 5%;
-    transform: translate(0, 0) rotate(10deg);
-}
+    /* Top */
+    .orbitItem:nth-child(1) {
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, 0) rotate(-5deg);
+    }
 
-/* Bottom Right */
-.orbitItem:nth-child(3) {
-    bottom: 25%;
-    right: 10%;
-    transform: translate(0, 0) rotate(-8deg);
-}
+    /* Top Right */
+    .orbitItem:nth-child(2) {
+        top: 25%;
+        right: 5%;
+        transform: translate(0, 0) rotate(10deg);
+    }
 
-/* Bottom */
-.orbitItem:nth-child(4) {
-    bottom: 10%;
-    left: 50%;
-    transform: translate(-50%, 0) rotate(3deg);
-}
+    /* Bottom Right */
+    .orbitItem:nth-child(3) {
+        bottom: 25%;
+        right: 10%;
+        transform: translate(0, 0) rotate(-8deg);
+    }
 
-/* Bottom Left */
-.orbitItem:nth-child(5) {
-    bottom: 25%;
-    left: 10%;
-    transform: translate(0, 0) rotate(-12deg);
-}
+    /* Bottom */
+    .orbitItem:nth-child(4) {
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 0) rotate(3deg);
+    }
 
-/* Top Left */
-.orbitItem:nth-child(6) {
-    top: 25%;
-    left: 5%;
-    transform: translate(0, 0) rotate(8deg);
+    /* Bottom Left */
+    .orbitItem:nth-child(5) {
+        bottom: 25%;
+        left: 10%;
+        transform: translate(0, 0) rotate(-12deg);
+    }
+
+    /* Top Left */
+    .orbitItem:nth-child(6) {
+        top: 25%;
+        left: 5%;
+        transform: translate(0, 0) rotate(8deg);
+    }
 }
 
 /* --- Center Button (Home/Close) --- */
@@ -237,6 +241,16 @@
 
 /* --- Mobile --- */
 @media (max-width: 768px) {
+    .menuButton {
+        width: 60px;
+        height: 60px;
+    }
+
+    .menuIconImg {
+        width: 32px;
+        height: 32px;
+    }
+
     .menuRadial {
         width: 100%;
         height: 100%;
@@ -260,10 +274,13 @@
         inset: auto;
         transform: none !important;
         /* Reset positions */
-        width: 80%;
+        width: 85%;
+        max-width: 300px;
         text-align: center;
-        font-size: 20px;
-        padding: 12px;
+        font-size: 18px;
+        padding: 14px 20px;
+        min-height: 48px;
+        /* Better touch target */
     }
 
     .orbitItem:hover {
@@ -272,8 +289,42 @@
 
     .menuCenter {
         margin-top: 30px;
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menuButton {
+        width: 55px;
+        height: 55px;
+    }
+
+    .menuIconImg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .menuRadial {
+        gap: 15px;
+        padding-top: 70px;
+    }
+
+    .orbit {
+        gap: 15px;
+    }
+
+    .orbitItem {
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 16px;
+    }
+
+    .menuCenter {
+        width: 75px;
+        height: 75px;
         font-size: 14px;
+        margin-top: 20px;
     }
 }

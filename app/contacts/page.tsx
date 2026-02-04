@@ -63,7 +63,7 @@ export default function ContactsPage() {
 
 
                 <div className={styles.contactsContainer}>
-                    <h1 className={styles.pageTitle}>Get In Touch</h1>
+                    <img src="/getintouch.png" alt="Get In Touch" className={styles.pageTitle} />
                     <p className={styles.pageSubtitle}>
                         We'd love to hear from you! Reach out and let's make magic together.
                     </p>

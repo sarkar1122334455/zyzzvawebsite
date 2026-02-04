@@ -82,6 +82,17 @@
     display: inline-block;
 }
 
+/* Styling for image in pageTitle */
+.pageTitle img,
+img.pageTitle {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4));
+    margin-top: -20px;
+}
+
 .glitchText {
     position: relative;
     animation: glitchAnimation 3s infinite;
@@ -112,6 +123,7 @@
     font-family: 'ProtestRevolutionLocal', sans-serif;
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-top: -60px;
 }
 
 /* ========================================
@@ -618,13 +630,24 @@
         padding: 100px 20px 60px;
     }
 
+    .heroSection {
+        margin-bottom: 60px;
+    }
+
+    .pageTitle img,
+    img.pageTitle {
+        max-width: 300px;
+    }
+
     .premiumSponsorsGrid {
         grid-template-columns: 1fr;
         max-width: 100%;
+        gap: 30px;
     }
 
     .partnersGrid {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .sectionBadge {
@@ -634,10 +657,29 @@
 
     .becomeSponsor {
         padding: 60px 20px;
+        margin-top: 100px;
+    }
+
+    .cardGlassEffect {
+        padding: 35px 25px;
+        min-height: 220px;
     }
 }
 
 @media (max-width: 480px) {
+    .sponsorContainer {
+        padding: 90px 15px 50px;
+    }
+
+    .heroSection {
+        margin-bottom: 50px;
+    }
+
+    .pageTitle img,
+    img.pageTitle {
+        max-width: 260px;
+    }
+
     .cardGlassEffect {
         padding: 30px 20px;
         min-height: 200px;
@@ -650,5 +692,49 @@
 
     .sponsorName {
         font-size: 18px;
+    }
+
+    .becomeSponsor {
+        padding: 50px 15px;
+        margin-top: 80px;
+    }
+
+    .ctaButton {
+        padding: 16px 35px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .sponsorContainer {
+        padding: 85px 12px 45px;
+    }
+
+    .pageTitle img,
+    img.pageTitle {
+        max-width: 240px;
+    }
+
+    .cardGlassEffect {
+        padding: 25px 18px;
+        min-height: 180px;
+    }
+
+    .logoPlaceholder,
+    .logoContainer {
+        height: 70px;
+    }
+
+    .sponsorName {
+        font-size: 16px;
+    }
+
+    .becomeSponsor {
+        padding: 45px 12px;
+    }
+
+    .ctaButton {
+        padding: 14px 30px;
+        font-size: 15px;
     }
 }
